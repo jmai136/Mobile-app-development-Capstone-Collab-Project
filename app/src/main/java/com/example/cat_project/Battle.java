@@ -15,8 +15,6 @@ import java.util.Locale;
 import java.util.Random;
 
 public class Battle extends AppCompatActivity {
-    final Random rng = new Random();
-
     private RadioGroup radioGroup;
     private TextView txtTimer, txtPlayerHP, txtEnemyHP;
 
@@ -41,8 +39,60 @@ public class Battle extends AppCompatActivity {
     }
 
     // if possible, make a universal method
-    private void battle(long countdownTimerDuration) {
+    private <T extends Character>void battle(long countdownTimerDuration, Class <T> Subclass) {
+        new CountDownTimer(countdownTimerDuration, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // countdown on screen
+                // convert milliseconds to seconds
+                // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
 
+                // set converted string onto textview
+                // txtTimer.setText(sDur);
+
+                // allows for battle options which should be radio groups
+                cat.getBattleOptionResults(getRadioID());
+
+                // button to skip to fight
+                Button btnLockIn = findViewById(R.id.btnLockIn);
+
+                btnLockIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // finish the timer automatically
+                        onFinish();
+                    }
+                });
+            }
+
+            public void onFinish() {
+                // apply damage to both characters
+                // apply damage to both characters
+                cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
+
+                // int catDmg = cat.applyDmg(mouse.mouseBattleOption(rng.nextInt(4))), mouseDmg = mouse.applyDmg(playerBattleOption(radioGroup));
+
+                // check if player's dead first
+                if (cat.getIsDead())
+                    cat.deathScreen();
+
+                // then enemy
+
+                // set text timer to show what has happened
+                txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n");
+
+                // update healths
+                txtPlayerHP.setText(cat.HP);
+
+                // if neither deaths is true, run the timer again
+                onTick(countdownTimerDuration);
+            }
+        }.start();
+    }
+
+    private int getChoice ()
+    {
+        final Random rng = new Random();
+        return rng.nextInt(4);
     }
 
     private void firstBattle() {
@@ -60,10 +110,9 @@ public class Battle extends AppCompatActivity {
                  // set converted string onto textview
                  // txtTimer.setText(sDur);
 
-                 // allows for battle options which should be radio groups
-                 cat.getBattleOptionResults(getRadioID());
-
+                 // button to skip to fight
                  Button btnLockIn = findViewById(R.id.btnLockIn);
+
                  btnLockIn.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
@@ -75,22 +124,26 @@ public class Battle extends AppCompatActivity {
 
              public void onFinish() {
                  // apply damage to both characters
-                 int catDmg = cat.applyDmg(mouse.mouseBattleOption(rng.nextInt(4))), mouseDmg = mouse.applyDmg(playerBattleOption(radioGroup));
+                 cat.setApplyDmg(mouse.getBattleOptionResults(getChoice()));
+
+                 // allows for battle options which should be radio groups
+                 mouse.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
+
+                 if (cat.getIsDead())
+                     cat.deathScreen();
 
                  // check if player's dead first
-                 if (isDead(catDmg))
-                    cat.deathScreen();
 
                  // then mouse
-                 if (isDead(mouseDmg))
+                 if (mouse.getIsDead())
                      return;
 
                  // set text timer to show what has happened
-                 txtTimer.setText(cat.getDamageText() + "\n" + mouse.mAtkTxt);
+                 txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" + mouse.getDamage() + ": " + mouse.getDamageText());
 
                  // update healths
-                 txtEnemyHP.setText(mouseDmg);
-                 txtPlayerHP.setText(catDmg);
+                 txtEnemyHP.setText(mouse.HP);
+                 txtPlayerHP.setText(cat.HP);
 
                  // if neither deaths is true, run the timer again
                  onTick(duration);
@@ -101,15 +154,7 @@ public class Battle extends AppCompatActivity {
     private void secondBattle() {
         // countdown timer, 20 seconds is equal to 20000 milliseconds
         long duration = 10000;
-
-        final Mouse mousePhaseTwo[] =
-                {
-                        new Mouse(rng.nextInt(150 - 100) + 100),
-                        new Mouse(rng.nextInt(180 - 100) + 100),
-                        new Mouse(rng.nextInt(270 - 100) + 100),
-                        new Mouse(rng.nextInt(220 - 100) + 100),
-                        new Mouse(rng.nextInt(230 - 100) + 100),
-                };
+        // final Mouse mouse.mousePhaseTwo[];
 
         new CountDownTimer(duration, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -160,7 +205,7 @@ public class Battle extends AppCompatActivity {
         // countdown timer, 20 seconds is equal to 20000 milliseconds
         long duration = 5000;
 
-        final Killer killer = new Killer(rng.nextInt(500 - 250) + 250);
+        final Killer killer = new Killer();
 
         new CountDownTimer(duration, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -208,11 +253,6 @@ public class Battle extends AppCompatActivity {
         return radioGroup.getCheckedRadioButtonId();
     }
 
-    private boolean isDead(int HP) {
-        return (HP <= 0);
-    }
-
-
     // superclass
     private static class Character {
         Random rng = new Random();
@@ -221,8 +261,8 @@ public class Battle extends AppCompatActivity {
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
         protected Pair<Integer, String> DmgAndTxtValues;
 
-        protected void getBattleOptionResults(int choice) {
-            DmgAndTxtValues = setBattleOption(choice);
+        protected Pair<Integer, String> getBattleOptionResults(int choice) {
+            return DmgAndTxtValues = setBattleOption(choice);
         }
 
         protected int getDamage() {
@@ -233,9 +273,7 @@ public class Battle extends AppCompatActivity {
             return DmgAndTxtValues.second;
         }
 
-        protected Pair<Integer, String> setBattleOption(
-                int choice) {
-
+        protected Pair<Integer, String> setBattleOption(int choice) {
             int dmg;
             String atkTxt;
 
@@ -265,11 +303,11 @@ public class Battle extends AppCompatActivity {
             return new Pair<Integer, String>(dmg, atkTxt);
         }
 
-        protected int setApplyDmg() {
-            return HP -= DmgAndTxtValues.first;
+        protected int setApplyDmg(Pair<Integer, String> Dmg) {
+            return HP -= Dmg.first;
         }
 
-        protected boolean isDead() {
+        protected boolean getIsDead() {
             return (HP <= 0);
         }
     }
@@ -292,7 +330,7 @@ public class Battle extends AppCompatActivity {
         }
 
         public boolean getIsDead() {
-            return isDead(setApplyDmg(1));
+            return getIsDead();
         }
 
         public void getDeathScreen() {
@@ -305,7 +343,7 @@ public class Battle extends AppCompatActivity {
     }
 
     public static class Mouse extends Character {
-        final Mouse mousePhaseTwo[] =
+        final public Mouse mousePhaseTwo[] =
                 {
                         new Mouse(100, 150),
                         new Mouse(100, 180),
@@ -339,11 +377,19 @@ public class Battle extends AppCompatActivity {
         }
     }
 
-    public static class Killer {
-        private int HP;
+    public static class Killer extends Character {
+        public Killer(i) {
+            this.HP = rng.nextInt(500 - 250) + 250;
+            this.DmgMax1 = 40;
+            this.DmgMax2 = 50;
+            this.DmgMax3 = 40;
+            this.DmgMax4 = 70;
 
-        public Killer(int HP) {
-            this.HP = HP;
+            this.AtkTxt1 = "Insert text here.";
+            this.AtkTxt2 = "Insert text here.";
+            this.AtkTxt3 = "Insert text here.";
+            this.AtkTxt4 = "Insert text here.";
+            this.Missed = "The killer missed.";
         }
 
         public int applyDmg(int dmg) { return HP -= dmg; }
