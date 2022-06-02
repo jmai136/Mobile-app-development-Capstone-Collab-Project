@@ -20,7 +20,6 @@ public class Battle extends AppCompatActivity {
     private TextView txtTimer, txtPlayerHP, txtEnemyHP;
 
     final private Cat cat = new Cat(rng.nextInt(100 - 20) + 20);
-    final private Killer killer = new Killer(rng.nextInt(500 - 250) + 250);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,8 @@ public class Battle extends AppCompatActivity {
         firstBattle();
 
         secondBattle();
+
+        finalBattle();
     }
 
     private void firstBattle() {
@@ -93,7 +94,7 @@ public class Battle extends AppCompatActivity {
 
     private void secondBattle() {
         // countdown timer, 20 seconds is equal to 20000 milliseconds
-        long duration = 20000;
+        long duration = 10000;
 
         final Mouse mousePhaseTwo[] =
                 {
@@ -139,6 +140,54 @@ public class Battle extends AppCompatActivity {
                 // apply damage to both characters
                 if (mousePhaseTwo.length <= 0)
                     return;
+
+                // set text timer to show what has happened
+                txtTimer.setText(playerAttackText(radioGroup));
+
+                // if neither deaths is true, run the timer again
+                onTick(duration);
+            }
+        }.start();
+    }
+
+    private void finalBattle() {
+        // countdown timer, 20 seconds is equal to 20000 milliseconds
+        long duration = 5000;
+
+        final Killer killer = new Killer(rng.nextInt(500 - 250) + 250);
+
+        new CountDownTimer(duration, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // countdown on screen
+                // convert milliseconds to seconds
+                // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
+
+                // set converted string onto textview
+                // txtTimer.setText(sDur);
+
+                // allows for battle options which should be radio groups
+                playerBattleOption(radioGroup);
+
+                Button btnLockIn = findViewById(R.id.btnLockIn);
+                btnLockIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // finish the timer automatically
+                        onFinish();
+                    }
+                });
+            }
+
+            public void onFinish() {
+                // int catDmg = cat.applyDmg(killer.mouseBattleOption(rng.nextInt(4))), killerDmg = killer.applyDmg(playerBattleOption(radioGroup));
+
+                // check if player's dead first
+                // if (isDead(catDmg))
+                    // cat.deathScreen();
+
+                // apply damage to both characters
+                // if (mousePhaseTwo.length <= 0)
+                    // return;
 
                 // set text timer to show what has happened
                 txtTimer.setText(playerAttackText(radioGroup));
