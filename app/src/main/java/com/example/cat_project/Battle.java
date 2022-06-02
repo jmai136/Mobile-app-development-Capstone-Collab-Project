@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.icu.util.TimeUnit;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -37,6 +38,11 @@ public class Battle extends AppCompatActivity {
         secondBattle();
 
         finalBattle();
+    }
+
+    // if possible, make a universal method
+    private void battle(long countdownTimerDuration) {
+
     }
 
     private void firstBattle() {
@@ -255,25 +261,89 @@ public class Battle extends AppCompatActivity {
         return attTxt;
     }
 
+    // superclass
+    private static class Character {
+        Random rng = new Random();
+
+        protected int HP;
+
+        protected Pair<Integer, String> DmgAndTxtValues;
+
+        protected void getBattleOptionResults(
+                int choice, int dmgMax1, int dmgMax2, int dmgMax3, int dmgMax4,
+                String atkTxt1, String atkTxt2, String atkTxt3, String atkTxt4) {
+
+            DmgAndTxtValues = setBattleOption(choice, dmgMax1, dmgMax2, dmgMax3, dmgMax4,
+            atkTxt1, atkTxt2, atkTxt3, atkTxt4);
+        }
+
+        protected Pair<Integer, String> setBattleOption(
+                int choice, int dmgMax1, int dmgMax2, int dmgMax3, int dmgMax4,
+                String atkTxt1, String atkTxt2, String atkTxt3, String atkTxt4) {
+
+            int dmg;
+            String atkTxt;
+
+            switch (choice) {
+                case 0:
+                    dmg = rng.nextInt(dmgMax1);
+                    atkTxt = atkTxt1;
+                    break;
+                case 1:
+                    dmg = rng.nextInt(dmgMax2);
+                    atkTxt = atkTxt2;
+                    break;
+                case 2:
+                    dmg = rng.nextInt(dmgMax3);
+                    atkTxt = atkTxt3;
+                    break;
+                case 3:
+                    dmg = rng.nextInt(dmgMax4);
+                    atkTxt = atkTxt4;
+                    break;
+                default:
+                    dmg = 0;
+                    atkTxt = "MISSED.";
+                    break;
+            }
+
+            return new Pair<Integer, String>(dmg, atkTxt);
+        }
+
+        protected int setApplyDmg(int dmg) {
+            return HP -= dmg;
+        }
+
+        protected boolean isDead(int HP) {
+            return (HP <= 0);
+        }
+    }
+
+
     // inner classes
-    public static class Cat {
-        private int HP;
+    public static class Cat extends Character {
 
         public Cat(int HP) {
             this.HP = HP;
         }
 
-        public int applyDmg(int dmg) {
-            return HP -= dmg;
+        public boolean getIsDead() {
+            return isDead(setApplyDmg(1));
         }
 
-        public void deathScreen() {
+        public void getDeathScreen() {
+            deathScreen();
+        }
+
+        public int getDamage() {
+            return Dmg;
+        }
+        private void deathScreen() {
             // switch to bad ending screen
         }
     }
 
-
-    public static class Mouse {
+    public static class Mouse extends Character {
         private int HP;
         String mAtkTxt;
 
