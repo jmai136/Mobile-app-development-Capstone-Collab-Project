@@ -17,8 +17,14 @@ import java.util.Random;
 public class Battle extends AppCompatActivity {
     private RadioGroup radioGroup;
     private TextView txtTimer, txtPlayerHP, txtEnemyHP;
+    private enum Phases {
+        PHASE_ONE,
+        PHASE_TWO,
+        PHASE_THREE
+    }
 
     final private Cat cat = new Cat();
+    private Phases phases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,20 @@ public class Battle extends AppCompatActivity {
         txtEnemyHP = findViewById(R.id.txtEnemyHP);
         txtPlayerHP = findViewById(R.id.txtPlayerHP);
 
+        phases = Phases.PHASE_ONE;
+
+        switch (phases) {
+            case PHASE_ONE:
+                // insert battle with argument
+                break;
+            case PHASE_TWO:
+                break;
+            case PHASE_THREE:
+                break;
+            default:
+                // ending screen
+                break;
+        }
         // start the battle
         firstBattle();
 
@@ -39,7 +59,7 @@ public class Battle extends AppCompatActivity {
     }
 
     // if possible, make a universal method
-    private void battle(long countdownTimerDuration, Class <Character> Subclass) {
+    private void battle(long countdownTimerDuration, Character Subclass) {
         new CountDownTimer(countdownTimerDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
@@ -48,9 +68,6 @@ public class Battle extends AppCompatActivity {
 
                 // set converted string onto textview
                 // txtTimer.setText(sDur);
-
-                // allows for battle options which should be radio groups
-                cat.getBattleOptionResults(getRadioID());
 
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
@@ -65,11 +82,11 @@ public class Battle extends AppCompatActivity {
             }
 
             public void onFinish() {
-                // apply damage to both characters
+                // allows for battle options which should be radio groups
+
                 // apply damage to both characters
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
-
-                // int catDmg = cat.applyDmg(mouse.mouseBattleOption(rng.nextInt(4))), mouseDmg = mouse.applyDmg(playerBattleOption(radioGroup));
+                Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
                 // check if player's dead first
                 if (cat.getIsDead())
