@@ -328,35 +328,6 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The mice missed.";
         }
 
-        /*public int mouseBattleOption(int choice) {
-            int dmg;
-
-            switch (choice) {
-                case 0:
-                    dmg = rng.nextInt(18);
-                    mAtkTxt = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
-                    break;
-                case 1:
-                    dmg = rng.nextInt(12);
-                    mAtkTxt = "The mouse discovered a bunch of toothpicks. He is looking around.";
-                    break;
-                case 2:
-                    dmg = rng.nextInt(14);
-                    mAtkTxt = "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!";
-                    break;
-                case 3:
-                    dmg = rng.nextInt(15);
-                    mAtkTxt = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
-                    break;
-                default:
-                    dmg = 0;
-                    mAtkTxt = "The mice missed.";
-                    break;
-            }
-
-            return dmg;
-        }*/
-
         public int applyDmg(int dmg) {
             return HP -= dmg;
         }
