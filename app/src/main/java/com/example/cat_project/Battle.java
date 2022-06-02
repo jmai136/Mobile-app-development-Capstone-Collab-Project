@@ -73,10 +73,10 @@ public class Battle extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
                 // convert milliseconds to seconds
-                // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
+                String timerDurationTxt = String.format(Locale.getDefault(),  "%02d",  (int)(millisUntilFinished/1000)%60);;
 
                 // set converted string onto textview
-                // txtTimer.setText(sDur);
+                txtTimer.setText(timerDurationTxt);
 
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
@@ -120,13 +120,9 @@ public class Battle extends AppCompatActivity {
         }.start();
     }
 
-    private int getChoice ()
-    {
-        final Random rng = new Random();
-        return rng.nextInt(4);
-    }
+    private int getChoice ()  { return new Random().nextInt(4); }
 
-    private void secondBattle() {
+    /*private void secondBattle() {
         // countdown timer, 20 seconds is equal to 20000 milliseconds
         long duration = 10000;
         // final Mouse mouse.mousePhaseTwo[];
@@ -174,7 +170,7 @@ public class Battle extends AppCompatActivity {
                 onTick(duration);
             }
         }.start();
-    }
+    }*/
 
 
     private int getRadioID() {
@@ -260,7 +256,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "You missed";
         }
 
-        private void deathScreen() {
+        public void deathScreen() {
             Toast.makeText(Battle.this, "Cat is dead", Toast.LENGTH_LONG).show();
         }
     }
@@ -311,7 +307,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The killer missed.";
         }
 
-        private void deathScreen() {
+        public void deathScreen() {
             Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
         }
     }
