@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Random;
@@ -21,6 +22,17 @@ public class Battle extends AppCompatActivity {
         PHASE_ONE,
         PHASE_TWO,
         PHASE_THREE
+                {
+                    @Override
+                    public Phases next() {
+                        return null;
+                    };
+                };
+
+        public Phases next() {
+            // No bounds checking required here, because the last instance overrides
+            return values()[ordinal() + 1];
+        }
     }
 
     final private Cat cat = new Cat();
@@ -37,25 +49,22 @@ public class Battle extends AppCompatActivity {
         txtPlayerHP = findViewById(R.id.txtPlayerHP);
 
         phases = Phases.PHASE_ONE;
+        // final Mouse mouse = new Mouse(100, 150);
 
         switch (phases) {
             case PHASE_ONE:
                 // insert battle with argument
+                battle(20000, new Mouse(100, 150));
                 break;
             case PHASE_TWO:
                 break;
             case PHASE_THREE:
+                battle(5000, new Killer());
                 break;
             default:
                 // ending screen
                 break;
         }
-        // start the battle
-        firstBattle();
-
-        secondBattle();
-
-        finalBattle();
     }
 
     // if possible, make a universal method
@@ -93,12 +102,17 @@ public class Battle extends AppCompatActivity {
                     cat.deathScreen();
 
                 // then enemy
+                if (Subclass.getIsDead()) {
+                    phases.next();
+                    return;
+                }
 
                 // set text timer to show what has happened
-                txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n");
+                txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText());
 
-                // update healths
+                // update healths, maybe make this just one text view, save space
                 txtPlayerHP.setText(cat.HP);
+                txtEnemyHP.setText(Subclass.HP);
 
                 // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
@@ -110,62 +124,6 @@ public class Battle extends AppCompatActivity {
     {
         final Random rng = new Random();
         return rng.nextInt(4);
-    }
-
-    private void firstBattle() {
-        // countdown timer, 20 seconds is equal to 20000 milliseconds
-        long duration = 20000;
-
-        final Mouse mouse = new Mouse(100, 150);
-
-        new CountDownTimer(duration, 1000) {
-             public void onTick(long millisUntilFinished) {
-                 // countdown on screen
-                 // convert milliseconds to seconds
-                 // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
-
-                 // set converted string onto textview
-                 // txtTimer.setText(sDur);
-
-                 // button to skip to fight
-                 Button btnLockIn = findViewById(R.id.btnLockIn);
-
-                 btnLockIn.setOnClickListener(new View.OnClickListener() {
-                     @Override
-                     public void onClick(View view) {
-                         // finish the timer automatically
-                         onFinish();
-                     }
-                 });
-             }
-
-             public void onFinish() {
-                 // apply damage to both characters
-                 cat.setApplyDmg(mouse.getBattleOptionResults(getChoice()));
-
-                 // allows for battle options which should be radio groups
-                 mouse.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
-
-                 if (cat.getIsDead())
-                     cat.deathScreen();
-
-                 // check if player's dead first
-
-                 // then mouse
-                 if (mouse.getIsDead())
-                     return;
-
-                 // set text timer to show what has happened
-                 txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" + mouse.getDamage() + ": " + mouse.getDamageText());
-
-                 // update healths
-                 txtEnemyHP.setText(mouse.HP);
-                 txtPlayerHP.setText(cat.HP);
-
-                 // if neither deaths is true, run the timer again
-                 onTick(duration);
-             }
-         }.start();
     }
 
     private void secondBattle() {
@@ -218,53 +176,6 @@ public class Battle extends AppCompatActivity {
         }.start();
     }
 
-    private void finalBattle() {
-        // countdown timer, 20 seconds is equal to 20000 milliseconds
-        long duration = 5000;
-
-        final Killer killer = new Killer();
-
-        new CountDownTimer(duration, 1000) {
-            public void onTick(long millisUntilFinished) {
-                // countdown on screen
-                // convert milliseconds to seconds
-                // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
-
-                // set converted string onto textview
-                // txtTimer.setText(sDur);
-
-                // allows for battle options which should be radio groups
-                // playerBattleOption(radioGroup);
-
-                Button btnLockIn = findViewById(R.id.btnLockIn);
-                btnLockIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // finish the timer automatically
-                        onFinish();
-                    }
-                });
-            }
-
-            public void onFinish() {
-                // int catDmg = cat.applyDmg(killer.mouseBattleOption(rng.nextInt(4))), killerDmg = killer.applyDmg(playerBattleOption(radioGroup));
-
-                // check if player's dead first
-                // if (isDead(catDmg))
-                    // cat.deathScreen();
-
-                // apply damage to both characters
-                // if (mousePhaseTwo.length <= 0)
-                    // return;
-
-                // set text timer to show what has happened
-                txtTimer.setText(playerAttackText(radioGroup));
-
-                // if neither deaths is true, run the timer again
-                onTick(duration);
-            }
-        }.start();
-    }
 
     private int getRadioID() {
         return radioGroup.getCheckedRadioButtonId();
@@ -327,8 +238,11 @@ public class Battle extends AppCompatActivity {
         protected boolean getIsDead() {
             return (HP <= 0);
         }
-    }
 
+        @Override
+        public void deathScreen() {
+        };
+    };
 
     // inner classes
     public static class Cat extends Character {
@@ -346,16 +260,8 @@ public class Battle extends AppCompatActivity {
             this.Missed = "You missed";
         }
 
-        public boolean getIsDead() {
-            return getIsDead();
-        }
-
-        public void getDeathScreen() {
-            deathScreen();
-        }
-
         private void deathScreen() {
-            // switch to bad ending screen
+            Toast.makeText(Battle.this, "Cat is dead", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -383,10 +289,6 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The mice missed.";
         }
 
-        public int applyDmg(int dmg) {
-            return HP -= dmg;
-        }
-
         public void mouseDeath() {
             // mouse dies,
             // cutscene for mouse reformation
@@ -395,7 +297,7 @@ public class Battle extends AppCompatActivity {
     }
 
     public static class Killer extends Character {
-        public Killer(i) {
+        public Killer() {
             this.HP = rng.nextInt(500 - 250) + 250;
             this.DmgMax1 = 40;
             this.DmgMax2 = 50;
@@ -409,6 +311,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The killer missed.";
         }
 
-        public int applyDmg(int dmg) { return HP -= dmg; }
+        private void deathScreen() {
+            Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
+        }
     }
-}
