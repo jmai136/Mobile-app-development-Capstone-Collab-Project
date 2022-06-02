@@ -39,7 +39,7 @@ public class Battle extends AppCompatActivity {
     }
 
     // if possible, make a universal method
-    private <T extends Character>void battle(long countdownTimerDuration, Class <T> Subclass) {
+    private void battle(long countdownTimerDuration, Class <Character> Subclass) {
         new CountDownTimer(countdownTimerDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
