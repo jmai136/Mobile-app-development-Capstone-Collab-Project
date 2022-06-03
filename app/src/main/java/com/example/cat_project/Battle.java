@@ -79,7 +79,7 @@ public class Battle extends AppCompatActivity {
     }
 
     private void goodEnding() {
-
+        finish();
     }
 
     @Override
