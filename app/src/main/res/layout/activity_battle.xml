@@ -39,17 +39,6 @@
         android:textSize="25sp"
         android:visibility="visible"></Button>
 
-    <TextView
-        android:id="@+id/txtPlayerHP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="161dp"
-        android:text="TextView"
-        android:textSize="10sp"
-        android:visibility="invisible" />
-
     <ImageView
         android:id="@+id/killer"
         android:layout_width="wrap_content"
