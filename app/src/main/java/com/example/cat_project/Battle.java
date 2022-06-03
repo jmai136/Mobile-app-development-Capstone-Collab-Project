@@ -65,6 +65,8 @@ public class Battle extends AppCompatActivity {
                 break;
             case PHASE_TWO:
                 // hm, how to do array of mice here
+                Mouse mouseGrp[] = {new Mouse(100, 150), new Mouse(100, 180), new Mouse(100, 270), new Mouse(100, 220), new Mouse(100, 230)};
+                battle(10000, mouseGrp);
                 break;
             case PHASE_THREE:
                 battle(5000, new Killer());
@@ -75,6 +77,15 @@ public class Battle extends AppCompatActivity {
                 break;
         }
     }
+
+    private void goodEnding() {
+
+    }
+
+    @Override
+    private void battle() {
+        return;
+    };
 
     // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
@@ -127,6 +138,11 @@ public class Battle extends AppCompatActivity {
             }
         }.start();
 
+        return;
+    }
+
+    // for the second battle
+    private void battle(long countdownTimerDuration, Mouse[] mouse) {
         return;
     }
 
@@ -246,7 +262,7 @@ public class Battle extends AppCompatActivity {
         }
 
         @Override
-        public void deathScreen() {
+        protected void deathScreen() {
         };
     };
 
@@ -305,7 +321,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The mice missed.";
         }
 
-        public void mouseDeath() {
+        public void deathScreen() {
             // mouse dies,
             // cutscene for mouse reformation
             // spawns killer
