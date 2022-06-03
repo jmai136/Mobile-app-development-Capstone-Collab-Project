@@ -60,7 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
                 Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
 
-                button.setVisibility(View.VISIBLE);
+                //delay button visibility
+                new CountDownTimer(5000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        button.setVisibility(View.INVISIBLE);
+                    }
+                    public void onFinish() {
+                        button.setVisibility(View.VISIBLE);
+                    }
+                }.start();
             }
         });
 
