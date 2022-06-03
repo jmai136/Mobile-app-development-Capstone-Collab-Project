@@ -145,13 +145,10 @@ public class Battle extends AppCompatActivity {
                         Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
                             @Override
                             public void onClick(View view) {
-                                Snackbar snackbar = Snackbar.make(relativeLayout, "Return to battle!", Snackbar.LENGTH_SHORT);
-                                snackbar.show();
+                                // update healths, maybe make this just one text view, save space
+                                txtHPAll.setText("You: " + cat.HP + "\n Enemy: " + Subclass.HP);
                             }
                         });
-
-                // update healths, maybe make this just one text view, save space
-                txtHPAll.setText(cat.HP + "\n" + Subclass.HP);
 
                 // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
