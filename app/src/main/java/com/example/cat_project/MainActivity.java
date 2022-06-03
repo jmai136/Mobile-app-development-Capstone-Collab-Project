@@ -37,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.start();
 
         //timer to set first txt invisible, second txt vis
-        /*TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                finish();
+        new CountDownTimer(5000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                kitchen1.setVisibility(View.VISIBLE);
+                kitchen2.setVisibility(View.INVISIBLE);
+            }
+            public void onFinish() {
                 kitchen1.setVisibility(View.INVISIBLE);
                 kitchen2.setVisibility(View.VISIBLE);
             }
-        };
-            Timer text = new Timer();
-            text.schedule(task, 5000);
+        }.start();
 */
         //listener pantry button toast shows img and txt
         btnPantry.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
                 Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
 
-                button.setVisibility(View.VISIBLE);
+                //delay button visibility
+                new CountDownTimer(5000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        button.setVisibility(View.INVISIBLE);
+                    }
+                    public void onFinish() {
+                        button.setVisibility(View.VISIBLE);
+                    }
+                }.start();
             }
         });
 

@@ -20,6 +20,15 @@ public class Battle extends AppCompatActivity {
     private RadioGroup radioGroup;
     private TextView txtTimer, txtHPAll;
     private MediaPlayer mpMusic;
+
+    final ImageView body = (ImageView) findViewById(R.id.body);
+    final ImageView rat1 = (ImageView) findViewById(R.id.rat1);
+    final ImageView rat2 = (ImageView) findViewById(R.id.rat2);
+    final ImageView rat3 = (ImageView) findViewById(R.id.rat3);
+    final ImageView rat4 = (ImageView) findViewById(R.id.rat4);
+    final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
+    final ImageView killer = (ImageView) findViewById(R.id.killer);
+
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,

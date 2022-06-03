@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cat-Project</string>
+    <string name="app_name">Cat Adventure Game</string>
     <string name="txtSplash">Cat Adventure Game</string>
     <string name="btnLivingRoom">Go To The Living Room</string>
     <string name="imgPantry">Pantry Door Image</string>
