@@ -15,6 +15,17 @@ public class GoodEnding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_good_ending);
 
+        //timer to start text
+        new CountDownTimer(3500, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ending.setVisibility(View.INVISIBLE);
+            }
+            public void onFinish() {
+                ending.setVisibility(View.VISIBLE);
+            }
+        }.start();
+
+
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -23,6 +34,6 @@ public class GoodEnding extends AppCompatActivity {
             }
         };
         Timer opening = new Timer();
-        opening.schedule(task, 10000);
+        opening.schedule(task, 15000);
     }
 }
