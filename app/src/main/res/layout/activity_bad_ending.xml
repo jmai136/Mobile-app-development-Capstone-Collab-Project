@@ -13,4 +13,15 @@
         android:scaleType="fitXY"
         android:layout_margin="0dp"
         app:srcCompat="@drawable/badendingpixel" />
+
+    <TextView
+        android:id="@+id/bEnding"
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="@string/bEnding"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 </RelativeLayout>
