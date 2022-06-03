@@ -183,9 +183,7 @@ public class Battle extends AppCompatActivity {
     }*/
 
 
-    private int getRadioID() {
-        return radioGroup.getCheckedRadioButtonId();
-    }
+    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
 
     // superclass
     private static class Character {
