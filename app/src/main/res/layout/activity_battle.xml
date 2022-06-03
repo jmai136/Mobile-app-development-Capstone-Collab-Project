@@ -19,17 +19,6 @@
         app:srcCompat="@drawable/livingpixel" />
 
 
-    <TextView
-        android:id="@+id/txtExplanation"
-        android:layout_width="334dp"
-        android:layout_height="61dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="498dp"
-        android:text="@string/txtExplanation"
-        android:textSize="25sp"
-        android:visibility="visible" />
-
     <Button
         android:id="@+id/btnLockIn"
         android:layout_width="wrap_content"
