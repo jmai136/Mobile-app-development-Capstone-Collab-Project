@@ -2,6 +2,7 @@ package com.example.cat_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.icu.util.TimeUnit;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -76,26 +77,20 @@ public class Battle extends AppCompatActivity {
             case PHASE_TWO:
                 // hm, how to do array of mice here
                 Mouse mouseGrp[] = {new Mouse(100, 150), new Mouse(100, 180), new Mouse(100, 270), new Mouse(100, 220), new Mouse(100, 230)};
-                battle(10000, mouseGrp);
+                battle(15000, mouseGrp);
                 break;
             case PHASE_THREE:
-                battle(5000, new Killer());
+                battle(10000, new Killer());
                 break;
             default:
                 // ending screen
                 mpMusic.stop();
+
+                // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                startActivity(new Intent(Battle.this, GoodEnding.class));
                 break;
         }
     }
-
-    private void goodEnding() {
-        finish();
-    }
-
-    @Override
-    private void battle() {
-        return;
-    };
 
     // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
@@ -156,6 +151,10 @@ public class Battle extends AppCompatActivity {
         return;
     }
 
+    // grab the radio id the player clicked on
+    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
+
+    // randomised choice of attack reserved for mouse and killer, it's 0-4 so the enemies can miss
     private int getChoice ()  { return new Random().nextInt(4); }
 
     /*private void secondBattle() {
@@ -207,9 +206,6 @@ public class Battle extends AppCompatActivity {
             }
         }.start();
     }*/
-
-
-    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
 
     // superclass
     private static class Character {
@@ -267,11 +263,8 @@ public class Battle extends AppCompatActivity {
             return HP -= Dmg.first;
         }
 
-        protected boolean getIsDead() {
-            return (HP <= 0);
-        }
+        protected boolean getIsDead() { return (HP <= 0);}
 
-        @Override
         protected void deathScreen() {
         };
     };
@@ -279,7 +272,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public class Cat extends Character {
         public Cat() {
-            this.HP = rng.nextInt(100 - 20) + 20;
+            this.HP = rng.nextInt((100 - 20) + 20);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
@@ -297,8 +290,12 @@ public class Battle extends AppCompatActivity {
             this.Missed = "You missed";
         }
 
+        @Override
         public void deathScreen() {
             Toast.makeText(Battle.this, "Cat is dead", Toast.LENGTH_LONG).show();
+
+            // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+            startActivity(new Intent(Battle.this, BadEnding.class));
         }
     }
 
@@ -331,6 +328,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The mice missed.";
         }
 
+        @Override
         public void deathScreen() {
             // mouse dies,
             // cutscene for mouse reformation
@@ -358,6 +356,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The killer missed.";
         }
 
+        @Override
         public void deathScreen() {
             Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
         }
