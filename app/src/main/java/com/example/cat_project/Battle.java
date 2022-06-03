@@ -189,7 +189,9 @@ public class Battle extends AppCompatActivity {
     private static class Character {
         protected Random rng = new Random();
 
-        protected int HP, Choice, DmgMax1, DmgMax2, DmgMax3, DmgMax4;
+        protected int HP,
+                DmgMin1, DmgMin2, DmgMin3, DmgMin4,
+                DmgMax1, DmgMax2, DmgMax3, DmgMax4;
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
         protected Pair<Integer, String> DmgAndTxtValues;
 
@@ -211,19 +213,19 @@ public class Battle extends AppCompatActivity {
 
             switch (choice) {
                 case 0:
-                    dmg = rng.nextInt(DmgMax1);
+                    dmg = rng.nextInt((DmgMax1 - DmgMin1) + DmgMin1);
                     atkTxt = AtkTxt1;
                     break;
                 case 1:
-                    dmg = rng.nextInt(DmgMax2);
+                    dmg = rng.nextInt((DmgMax2 - DmgMin2) + DmgMin2);
                     atkTxt = AtkTxt2;
                     break;
                 case 2:
-                    dmg = rng.nextInt(DmgMax3);
+                    dmg = rng.nextInt((DmgMax3 - DmgMin3) + DmgMin3);
                     atkTxt = AtkTxt3;
                     break;
                 case 3:
-                    dmg = rng.nextInt(DmgMax4);
+                    dmg = rng.nextInt((DmgMax4 - DmgMin4) + DmgMin4);
                     atkTxt = AtkTxt4;
                     break;
                 default:
@@ -252,6 +254,11 @@ public class Battle extends AppCompatActivity {
     public class Cat extends Character {
         public Cat() {
             this.HP = rng.nextInt(100 - 20) + 20;
+            this.DmgMin1 = 9;
+            this.DmgMin2 = 8;
+            this.DmgMin3 = 9;
+            this.DmgMin4 = 2;
+
             this.DmgMax1 = 15;
             this.DmgMax2 = 10;
             this.DmgMax3 = 12;
@@ -281,6 +288,11 @@ public class Battle extends AppCompatActivity {
 
         public Mouse(int minHP, int maxHP) {
             this.HP = rng.nextInt((maxHP - minHP) + minHP);
+            this.DmgMin1 = 2;
+            this.DmgMin2 = 4;
+            this.DmgMin3 = 7;
+            this.DmgMin4 = 7;
+
             this.DmgMax1 = 18;
             this.DmgMax2 = 12;
             this.DmgMax3 = 14;
@@ -303,6 +315,11 @@ public class Battle extends AppCompatActivity {
     public class Killer extends Character {
         public Killer() {
             this.HP = rng.nextInt(500 - 250) + 250;
+            this.DmgMin1 = 12;
+            this.DmgMin2 = 14;
+            this.DmgMin3 = 7;
+            this.DmgMin4 = 6;
+
             this.DmgMax1 = 40;
             this.DmgMax2 = 50;
             this.DmgMax3 = 40;

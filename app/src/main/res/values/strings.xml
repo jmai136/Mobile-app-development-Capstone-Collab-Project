@@ -8,9 +8,9 @@
     <string name="txtKitchen2">It\'s time to eat, but you don\'t see your food anywhere.</string>
     <string name="txtExplanation">Choose an attack and lock in before the timer runs down"</string>
     <string name="btnLockIn">Lock In</string>
-    <string name="atk1">1</string>
-    <string name="atk2">2</string>
-    <string name="atk3">3</string>
-    <string name="atk4">4</string>
+    <string name="atk1">Claw: 9 - 15 DMG</string>
+    <string name="atk2">Bite: 8 - 10 DMG</string>
+    <string name="atk3">Swipe: 9 - 12 DMG</string>
+    <string name="atk4">Hiss 2 - 20 DMG</string>
     <string name="txtCredits">Game Creators:</string>
 </resources>
