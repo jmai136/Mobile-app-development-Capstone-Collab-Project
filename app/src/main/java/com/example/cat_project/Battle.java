@@ -68,7 +68,7 @@ public class Battle extends AppCompatActivity {
         mpMusic.start();
 
         radioGroup = findViewById(R.id.radioGroup);
-        txtTimer = findViewById(R.id.txtTimer);
+        // txtTimer = findViewById(R.id.txtTimer);
 
         phases = Phases.PHASE_ONE;
 
