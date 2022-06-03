@@ -20,6 +20,15 @@
         app:srcCompat="@drawable/livingpixel" />
 
 
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        tools:text="Timer goes here." />
+
     <Button
         android:id="@+id/btnLockIn"
         android:layout_width="wrap_content"
