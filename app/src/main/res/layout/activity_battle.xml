@@ -12,113 +12,206 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
-        android:scaleType="fitXY"
         app:srcCompat="@drawable/livingpixel" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
+    <ImageResource>
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="171dp"
+            android:layout_marginLeft="171dp"
+            android:layout_marginTop="208dp"
+            android:layout_marginEnd="172dp"
+            android:layout_marginRight="172dp">
+
+            <RadioButton
+                android:id="@+id/one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atk1"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atk2"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atk3"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atk4"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtExplanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="541dp"
+            android:text="@string/txtExplanation"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnLockIn"
+            android:layout_width="237dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="87dp"
+            android:layout_marginLeft="87dp"
+            android:layout_marginEnd="87dp"
+            android:layout_marginRight="87dp"
+            android:layout_marginBottom="112dp"
+            android:text="@string/btnLockIn">
+        </Button>
+
+        <TextView
+            android:id="@+id/txtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="177dp"
+            android:layout_marginLeft="177dp"
+            android:layout_marginEnd="176dp"
+            android:layout_marginRight="176dp"
+            android:layout_marginBottom="7dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/txtEnemyHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/txtPlayerHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="161dp"
+            android:text="TextView"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/killer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/killer" />
+
+        <ImageView
+            android:id="@+id/rat1"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginBottom="-188dp"
+            app:srcCompat="@drawable/rat1" />
+
+        <ImageView
+            android:id="@+id/rat2"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="132dp"
+            android:layout_marginBottom="-158dp"
+            app:srcCompat="@drawable/rat2" />
+
+        <ImageView
+            android:id="@+id/rat3"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="188dp"
+            android:layout_marginBottom="-25dp"
+            app:srcCompat="@drawable/rat3" />
+
+        <ImageView
+            android:id="@+id/rat4"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="213dp"
+            android:layout_marginTop="199dp"
+            android:layout_marginEnd="-22dp"
+            android:layout_marginBottom="-2dp"
+            app:srcCompat="@drawable/rat4" />
+
+        <ImageView
+            android:id="@+id/ratAlone"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="103dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginBottom="-8dp"
+            app:srcCompat="@drawable/rat1" />
+    </ImageResource>
+
+    <ImageView
+        android:id="@+id/body"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="169dp"
-        android:layout_marginLeft="169dp"
-        android:layout_marginTop="243dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginRight="174dp">
-
-        <RadioButton
-            android:id="@+id/one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/atk1"
-            android:textSize="12sp" />
-
-        <RadioButton
-            android:id="@+id/two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/atk2"
-            android:textSize="12sp" />
-
-        <RadioButton
-            android:id="@+id/three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/atk3"
-            android:textSize="12sp" />
-
-        <RadioButton
-            android:id="@+id/four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/atk4"
-            android:textSize="12sp" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/txtExplanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="135dp"
-        android:text="@string/txtExplanation"
-        android:textSize="12sp" />
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="279dp"
+        android:layout_marginEnd="-24dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/body" />
 
-    <Button
-        android:id="@+id/btnLockIn"
-        android:layout_width="237dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="89dp"
-        android:layout_marginLeft="89dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/btnLockIn">
-
-    </Button>
-
-    <TextView
-        android:id="@+id/txtTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="177dp"
-        android:layout_marginLeft="177dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginRight="175dp"
-        android:layout_marginBottom="100dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/txtHPAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="214dp"
-        android:layout_marginEnd="189dp"
-        android:text="TextView"
-        android:textSize="10sp" />
 </RelativeLayout>
