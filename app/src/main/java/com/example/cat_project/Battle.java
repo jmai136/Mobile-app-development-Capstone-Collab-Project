@@ -129,7 +129,7 @@ public class Battle extends AppCompatActivity {
 
                 Snackbar.make(
                         relativeLayout,
-                        "Cat damages at: "cat.getDamageVal() + ", " +  cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
+                        "Cat damages at: " + cat.getDamageVal() + ", " +  cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
                         Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
