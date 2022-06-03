@@ -3,6 +3,7 @@ package com.example.cat_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.util.TimeUnit;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Pair;
@@ -17,7 +18,8 @@ import java.util.Random;
 
 public class Battle extends AppCompatActivity {
     private RadioGroup radioGroup;
-    private TextView txtTimer, txtPlayerHP, txtEnemyHP;
+    private TextView txtTimer, txtHPAll;
+    private MediaPlayer mpMusic;
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
@@ -43,10 +45,15 @@ public class Battle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
+        //music
+        mpMusic = new MediaPlayer();
+        mpMusic = MediaPlayer.create(this, R.raw.music);
+        mpMusic.setLooping(true);
+        mpMusic.start();
+
         radioGroup = findViewById(R.id.radioGroup);
         txtTimer = findViewById(R.id.txtTimer);
-        txtEnemyHP = findViewById(R.id.txtEnemyHP);
-        txtPlayerHP = findViewById(R.id.txtPlayerHP);
+        txtHPAll = findViewById(R.id.txtHPAll);
 
         phases = Phases.PHASE_ONE;
         // final Mouse mouse = new Mouse(100, 150);
@@ -57,6 +64,7 @@ public class Battle extends AppCompatActivity {
                 battle(20000, new Mouse(100, 150));
                 break;
             case PHASE_TWO:
+                // hm, how to do array of mice here
                 break;
             case PHASE_THREE:
                 battle(5000, new Killer());
@@ -111,13 +119,14 @@ public class Battle extends AppCompatActivity {
                 txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText());
 
                 // update healths, maybe make this just one text view, save space
-                txtPlayerHP.setText(cat.HP);
-                txtEnemyHP.setText(Subclass.HP);
+                txtHPAll.setText(cat.HP + "\n" + Subclass.HP);
 
                 // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
             }
         }.start();
+
+        return;
     }
 
     private int getChoice ()  { return new Random().nextInt(4); }
@@ -241,7 +250,7 @@ public class Battle extends AppCompatActivity {
     };
 
     // inner classes
-    public static class Cat extends Character {
+    public class Cat extends Character {
         public Cat() {
             this.HP = rng.nextInt(100 - 20) + 20;
             this.DmgMax1 = 15;
@@ -261,8 +270,8 @@ public class Battle extends AppCompatActivity {
         }
     }
 
-    public static class Mouse extends Character {
-        final public Mouse mousePhaseTwo[] =
+    public class Mouse extends Character {
+        final protected Mouse mousePhaseTwo[] =
                 {
                         new Mouse(100, 150),
                         new Mouse(100, 180),
@@ -292,7 +301,7 @@ public class Battle extends AppCompatActivity {
         }
     }
 
-    public static class Killer extends Character {
+    public class Killer extends Character {
         public Killer() {
             this.HP = rng.nextInt(500 - 250) + 250;
             this.DmgMax1 = 40;

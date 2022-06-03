@@ -17,11 +17,11 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="171dp"
-        android:layout_marginLeft="171dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="172dp"
-        android:layout_marginRight="172dp">
+        android:layout_marginStart="169dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginTop="243dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginRight="174dp">
 
         <RadioButton
             android:id="@+id/one"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="169dp"
+        android:layout_marginBottom="135dp"
         android:text="@string/txtExplanation"
         android:textSize="12sp" />
 
@@ -71,11 +71,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginLeft="87dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginRight="87dp"
-        android:layout_marginBottom="112dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="89dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/btnLockIn">
 
     </Button>
@@ -89,30 +90,23 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="177dp"
         android:layout_marginLeft="177dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginRight="175dp"
+        android:layout_marginBottom="100dp"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/txtEnemyHP"
+        android:id="@+id/txtHPAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
-        android:text="TextView"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/txtPlayerHP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="161dp"
+        android:layout_marginTop="214dp"
+        android:layout_marginEnd="189dp"
         android:text="TextView"
         android:textSize="10sp" />
 </RelativeLayout>
