@@ -2,6 +2,7 @@ package com.example.cat_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.icu.util.TimeUnit;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Locale;
 import java.util.Random;
@@ -29,6 +33,8 @@ public class Battle extends AppCompatActivity {
     final ImageView rat4 = (ImageView) findViewById(R.id.rat4);
     final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
     final ImageView killer = (ImageView) findViewById(R.id.killer);
+
+    public RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
     private enum Phases {
         PHASE_ONE,
@@ -66,7 +72,6 @@ public class Battle extends AppCompatActivity {
         txtHPAll = findViewById(R.id.txtHPAll);
 
         phases = Phases.PHASE_ONE;
-        // final Mouse mouse = new Mouse(100, 150);
 
         switch (phases) {
             case PHASE_ONE:
@@ -76,29 +81,33 @@ public class Battle extends AppCompatActivity {
             case PHASE_TWO:
                 // hm, how to do array of mice here
                 Mouse mouseGrp[] = {new Mouse(100, 150), new Mouse(100, 180), new Mouse(100, 270), new Mouse(100, 220), new Mouse(100, 230)};
-                battle(10000, mouseGrp);
+                battle(15000, mouseGrp);
                 break;
             case PHASE_THREE:
-                battle(5000, new Killer());
+                battle(10000, new Killer());
                 break;
             default:
                 // ending screen
                 mpMusic.stop();
+
+                Snackbar.make(
+                        relativeLayout,
+                        "You won, and although you will never be free from your scars, you can always start on a new beginning.",
+                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                        startActivity(new Intent(Battle.this, GoodEnding.class));
+                    }
+                });
                 break;
         }
     }
 
-    private void goodEnding() {
-        finish();
-    }
-
-    @Override
-    private void battle() {
-        return;
-    };
-
     // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
+
+        // maybe make a CountDownTimer modifiable variable that the methods can be 'overridden'
         new CountDownTimer(countdownTimerDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
@@ -121,11 +130,22 @@ public class Battle extends AppCompatActivity {
             }
 
             public void onFinish() {
-                // allows for battle options which should be radio groups
+                txtTimer.setText("");
 
                 // apply damage to both characters
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
+
+                Snackbar.make(
+                        relativeLayout,
+                        "Cat damages at: " + cat.getDamageVal() + ", " +  cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
+                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        // update healths, maybe make this just one text view, save space
+                        txtHPAll.setText("You: " + cat.HP + "\n Enemy: " + Subclass.HP);
+                    }
+                });
 
                 // check if player's dead first
                 if (cat.getIsDead())
@@ -136,12 +156,6 @@ public class Battle extends AppCompatActivity {
                     phases.next();
                     return;
                 }
-
-                // set text timer to show what has happened
-                txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText());
-
-                // update healths, maybe make this just one text view, save space
-                txtHPAll.setText(cat.HP + "\n" + Subclass.HP);
 
                 // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
@@ -156,6 +170,10 @@ public class Battle extends AppCompatActivity {
         return;
     }
 
+    // grab the radio id the player clicked on
+    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
+
+    // randomised choice of attack reserved for mouse and killer, it's 0-4 so the enemies can miss
     private int getChoice ()  { return new Random().nextInt(4); }
 
     /*private void secondBattle() {
@@ -208,9 +226,6 @@ public class Battle extends AppCompatActivity {
         }.start();
     }*/
 
-
-    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
-
     // superclass
     private static class Character {
         protected Random rng = new Random();
@@ -225,7 +240,7 @@ public class Battle extends AppCompatActivity {
             return DmgAndTxtValues = setBattleOption(choice);
         }
 
-        protected int getDamage() {
+        protected int getDamageVal() {
             return DmgAndTxtValues.first;
         }
 
@@ -267,11 +282,8 @@ public class Battle extends AppCompatActivity {
             return HP -= Dmg.first;
         }
 
-        protected boolean getIsDead() {
-            return (HP <= 0);
-        }
+        protected boolean getIsDead() { return (HP <= 0);}
 
-        @Override
         protected void deathScreen() {
         };
     };
@@ -279,7 +291,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public class Cat extends Character {
         public Cat() {
-            this.HP = rng.nextInt(100 - 20) + 20;
+            this.HP = rng.nextInt((100 - 20) + 20);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
@@ -297,8 +309,18 @@ public class Battle extends AppCompatActivity {
             this.Missed = "You missed";
         }
 
+        @Override
         public void deathScreen() {
-            Toast.makeText(Battle.this, "Cat is dead", Toast.LENGTH_LONG).show();
+            Snackbar.make(
+                    relativeLayout,
+                    "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
+                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                    startActivity(new Intent(Battle.this, BadEnding.class));
+                }
+            });
         }
     }
 
@@ -331,6 +353,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The mice missed.";
         }
 
+        @Override
         public void deathScreen() {
             // mouse dies,
             // cutscene for mouse reformation
@@ -358,6 +381,7 @@ public class Battle extends AppCompatActivity {
             this.Missed = "The killer missed.";
         }
 
+        @Override
         public void deathScreen() {
             Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
         }

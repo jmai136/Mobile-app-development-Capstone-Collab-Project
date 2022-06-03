@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +21,8 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     //global variables for music
     MediaPlayer mpMusic;
+
+    private RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +82,12 @@ public class MainActivity extends AppCompatActivity {
         btnTrash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Toast.LENGTH_LONG).show();
+                Snackbar.make(relativeLayout, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -84,7 +95,12 @@ public class MainActivity extends AppCompatActivity {
         btnCounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Toast.LENGTH_LONG).show();
+                Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -93,7 +109,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mpMusic.stop();
-                startActivity(new Intent(MainActivity.this, Battle.class));
+                Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(MainActivity.this, Battle.class));
+                    }
+                });
             }
         });
     }
