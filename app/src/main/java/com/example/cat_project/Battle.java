@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Locale;
 import java.util.Random;
@@ -116,6 +119,8 @@ public class Battle extends AppCompatActivity {
             }
 
             public void onFinish() {
+                txtTimer.setText("");
+
                 // allows for battle options which should be radio groups
 
                 // apply damage to both characters
@@ -132,8 +137,18 @@ public class Battle extends AppCompatActivity {
                     return;
                 }
 
-                // set text timer to show what has happened
-                txtTimer.setText(cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText());
+                RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+
+                Snackbar.make(
+                        relativeLayout,
+                        cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText(),
+                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view) {
+                                Snackbar snackbar = Snackbar.make(relativeLayout, "Return to battle!", Snackbar.LENGTH_SHORT);
+                                snackbar.show();
+                            }
+                        });
 
                 // update healths, maybe make this just one text view, save space
                 txtHPAll.setText(cat.HP + "\n" + Subclass.HP);
