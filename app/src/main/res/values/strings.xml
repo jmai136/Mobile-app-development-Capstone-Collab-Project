@@ -7,7 +7,7 @@
     <string name="txtKitchen1">Meow... Meow...</string>
     <string name="txtKitchen2">It\'s time to eat, but you don\'t see your food anywhere.</string>
     <string name="txtExplanation">Choose an attack and lock in before the timer runs down"</string>
-    <string name="btnLockIn">Lock In</string>
+    <string name="btnLockIn">Attack</string>
     <string name="atk1">Claw: 9 - 15 DMG</string>
     <string name="atk2">Bite: 8 - 10 DMG</string>
     <string name="atk3">Swipe: 9 - 12 DMG</string>
