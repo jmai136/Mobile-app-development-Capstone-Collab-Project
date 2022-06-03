@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.start();
 
         //timer to set first txt invisible, second txt vis
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(3500, 1000) {
             public void onTick(long millisUntilFinished) {
                 kitchen1.setVisibility(View.VISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
 
                 //delay button visibility
-                new CountDownTimer(5000, 1000) {
+                new CountDownTimer(3500, 1000) {
                     public void onTick(long millisUntilFinished) {
                         button.setVisibility(View.INVISIBLE);
                     }
