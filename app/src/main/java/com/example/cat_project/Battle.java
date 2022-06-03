@@ -189,7 +189,7 @@ public class Battle extends AppCompatActivity {
 
     // superclass
     private static class Character {
-        Random rng = new Random();
+        protected Random rng = new Random();
 
         protected int HP, Choice, DmgMax1, DmgMax2, DmgMax3, DmgMax4;
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
