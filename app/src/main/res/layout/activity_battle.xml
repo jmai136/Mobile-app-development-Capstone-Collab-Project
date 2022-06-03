@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Battle">
@@ -12,23 +13,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
+        android:scaleType="fitXY"
         app:srcCompat="@drawable/livingpixel" />
 
 
     <TextView
-        android:id="@+id/txtExplanation"
-        android:layout_width="334dp"
-        android:layout_height="61dp"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/txtTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="498dp"
-        android:text="@string/txtExplanation"
-        android:textSize="25sp"
-        android:visibility="visible" />
+        android:layout_marginTop="56dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1991D0"
+        tools:text="Timer goes here." />
 
     <Button
         android:id="@+id/btnLockIn"
@@ -48,17 +50,6 @@
         android:text="@string/btnLockIn"
         android:textSize="25sp"
         android:visibility="visible"></Button>
-
-    <TextView
-        android:id="@+id/txtPlayerHP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="161dp"
-        android:text="TextView"
-        android:textSize="10sp"
-        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/killer"
@@ -182,7 +173,7 @@
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/atk4"

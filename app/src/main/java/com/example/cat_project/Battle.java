@@ -29,8 +29,6 @@ public class Battle extends AppCompatActivity {
     final ImageView body = (ImageView) findViewById(R.id.body);
     final ImageView rat1 = (ImageView) findViewById(R.id.rat1);
     final ImageView rat2 = (ImageView) findViewById(R.id.rat2);
-    final ImageView rat3 = (ImageView) findViewById(R.id.rat3);
-    final ImageView rat4 = (ImageView) findViewById(R.id.rat4);
     final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
     final ImageView killer = (ImageView) findViewById(R.id.killer);
 
@@ -68,8 +66,7 @@ public class Battle extends AppCompatActivity {
         mpMusic.start();
 
         radioGroup = findViewById(R.id.radioGroup);
-        txtTimer = findViewById(R.id.txtTimer);
-        txtHPAll = findViewById(R.id.txtHPAll);
+        // txtTimer = findViewById(R.id.txtTimer);
 
         phases = Phases.PHASE_ONE;
 
@@ -142,8 +139,7 @@ public class Battle extends AppCompatActivity {
                         Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        // update healths, maybe make this just one text view, save space
-                        txtHPAll.setText("You: " + cat.HP + "\n Enemy: " + Subclass.HP);
+                        Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show();
                     }
                 });
 
