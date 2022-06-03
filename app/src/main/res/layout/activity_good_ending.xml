@@ -7,7 +7,7 @@
     tools:context=".GoodEnding">
 
     <ImageView
-        android:id="@+id/goodPixel"
+        android:id="@+id/imgGoodPixel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
