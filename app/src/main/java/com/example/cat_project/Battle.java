@@ -121,11 +121,22 @@ public class Battle extends AppCompatActivity {
             public void onFinish() {
                 txtTimer.setText("");
 
-                // allows for battle options which should be radio groups
-
                 // apply damage to both characters
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
+
+                RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+
+                Snackbar.make(
+                        relativeLayout,
+                        "Cat damages at: "cat.getDamageVal() + ", " +  cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
+                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        // update healths, maybe make this just one text view, save space
+                        txtHPAll.setText("You: " + cat.HP + "\n Enemy: " + Subclass.HP);
+                    }
+                });
 
                 // check if player's dead first
                 if (cat.getIsDead())
@@ -136,19 +147,6 @@ public class Battle extends AppCompatActivity {
                     phases.next();
                     return;
                 }
-
-                RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
-
-                Snackbar.make(
-                        relativeLayout,
-                        cat.getDamage() + ": " +  cat.getDamageText() + "\n" +  + Subclass.getDamage() + ": " + Subclass.getDamageText(),
-                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
-                            @Override
-                            public void onClick(View view) {
-                                // update healths, maybe make this just one text view, save space
-                                txtHPAll.setText("You: " + cat.HP + "\n Enemy: " + Subclass.HP);
-                            }
-                        });
 
                 // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
@@ -233,7 +231,7 @@ public class Battle extends AppCompatActivity {
             return DmgAndTxtValues = setBattleOption(choice);
         }
 
-        protected int getDamage() {
+        protected int getDamageVal() {
             return DmgAndTxtValues.first;
         }
 
