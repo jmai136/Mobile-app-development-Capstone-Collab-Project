@@ -10,5 +10,15 @@ public class GoodEnding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_good_ending);
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                finish();
+                startActivity(new Intent(GoodEnding.this, Credits.class));
+            }
+        };
+        Timer opening = new Timer();
+        opening.schedule(task, 10000);
     }
 }
