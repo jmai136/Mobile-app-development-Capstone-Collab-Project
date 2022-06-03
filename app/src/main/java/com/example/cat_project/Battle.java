@@ -71,6 +71,7 @@ public class Battle extends AppCompatActivity {
                 break;
             default:
                 // ending screen
+                mpMusic.stop();
                 break;
         }
     }
