@@ -161,7 +161,7 @@
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/atk4"
