@@ -34,6 +34,8 @@ public class Battle extends AppCompatActivity {
     final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
     final ImageView killer = (ImageView) findViewById(R.id.killer);
 
+    public RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
@@ -70,7 +72,6 @@ public class Battle extends AppCompatActivity {
         txtHPAll = findViewById(R.id.txtHPAll);
 
         phases = Phases.PHASE_ONE;
-        // final Mouse mouse = new Mouse(100, 150);
 
         switch (phases) {
             case PHASE_ONE:
@@ -89,14 +90,24 @@ public class Battle extends AppCompatActivity {
                 // ending screen
                 mpMusic.stop();
 
-                // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                startActivity(new Intent(Battle.this, GoodEnding.class));
+                Snackbar.make(
+                        relativeLayout,
+                        "You won, and although you will never be free from your scars, you can always start on a new beginning.",
+                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                        startActivity(new Intent(Battle.this, GoodEnding.class));
+                    }
+                });
                 break;
         }
     }
 
     // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
+
+        // maybe make a CountDownTimer modifiable variable that the methods can be 'overridden'
         new CountDownTimer(countdownTimerDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
@@ -124,8 +135,6 @@ public class Battle extends AppCompatActivity {
                 // apply damage to both characters
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
-
-                RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
                 Snackbar.make(
                         relativeLayout,
@@ -302,10 +311,16 @@ public class Battle extends AppCompatActivity {
 
         @Override
         public void deathScreen() {
-            Toast.makeText(Battle.this, "Cat is dead", Toast.LENGTH_LONG).show();
-
-            // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-            startActivity(new Intent(Battle.this, BadEnding.class));
+            Snackbar.make(
+                    relativeLayout,
+                    "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
+                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                    startActivity(new Intent(Battle.this, BadEnding.class));
+                }
+            });
         }
     }
 
