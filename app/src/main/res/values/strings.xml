@@ -2,6 +2,7 @@
     <string name="app_name">Cat Adventure Game</string>
     <string name="txtSplash">Cat Adventure Game</string>
     <string name="btnLivingRoom">Go To The Living Room</string>
+    <string name="btnCon">Continue</string>
     <string name="imgPantry">Pantry Door Image</string>
     <string name="imgDead">Dead Owner Image</string>
     <string name="txtKitchen1">Meow... Meow...</string>
