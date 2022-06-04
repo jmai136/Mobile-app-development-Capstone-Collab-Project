@@ -17,15 +17,17 @@ public class BadEnding extends AppCompatActivity {
         final TextView ending = (TextView) findViewById(R.id.bEnding);
         Button btnCon = (Button) findViewById(R.id.btnCon);
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                finish();
-                startActivity(new Intent(BadEnding.this, Credits.class));
+        //timer to start text and btn
+        new CountDownTimer(3500, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ending.setVisibility(View.INVISIBLE);
+                btnCon.setVisibility(View.INVISIBLE);
             }
-        };
-        Timer opening = new Timer();
-        opening.schedule(task, 15000);
-    }
+
+            public void onFinish() {
+                ending.setVisibility(View.VISIBLE);
+                btnCon.setVisibility(View.VISIBLE);
+            }
+        }.start();
     }
 }
