@@ -14,6 +14,8 @@ public class GoodEnding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_good_ending);
+        final TextView ending = (TextView) findViewById(R.id.gEnding);
+        Button btnCon = (Button) findViewById(R.id.btnCon);
 
         //timer to start text
         new CountDownTimer(3500, 1000) {
