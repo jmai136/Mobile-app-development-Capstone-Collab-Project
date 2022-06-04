@@ -155,6 +155,8 @@
             android:id="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="@string/atk1"
             android:textSize="20sp" />
 
@@ -162,6 +164,8 @@
             android:id="@+id/two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="@string/atk2"
             android:textSize="20sp" />
 
@@ -169,6 +173,8 @@
             android:id="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="@string/atk3"
             android:textSize="20sp" />
 
@@ -176,6 +182,8 @@
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="@string/atk4"
             android:textSize="20sp" />
     </RadioGroup>
