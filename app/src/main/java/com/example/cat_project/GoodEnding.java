@@ -29,5 +29,13 @@ public class GoodEnding extends AppCompatActivity {
                 btnCon.setVisibility(View.VISIBLE);
             }
         }.start();
+
+        //listener button takes player to credits.java
+        btnCon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GoodEnding.this, Credits.class));
+            }
+        });
     }
 }
