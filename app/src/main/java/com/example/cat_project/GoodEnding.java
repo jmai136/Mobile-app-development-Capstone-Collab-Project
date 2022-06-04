@@ -17,25 +17,17 @@ public class GoodEnding extends AppCompatActivity {
         final TextView ending = (TextView) findViewById(R.id.gEnding);
         Button btnCon = (Button) findViewById(R.id.btnCon);
 
-        //timer to start text
+        //timer to start text and btn
         new CountDownTimer(3500, 1000) {
             public void onTick(long millisUntilFinished) {
                 ending.setVisibility(View.INVISIBLE);
+                btnCon.setVisibility(View.INVISIBLE);
             }
+
             public void onFinish() {
                 ending.setVisibility(View.VISIBLE);
+                btnCon.setVisibility(View.VISIBLE);
             }
         }.start();
-
-
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                finish();
-                startActivity(new Intent(GoodEnding.this, Credits.class));
-            }
-        };
-        Timer opening = new Timer();
-        opening.schedule(task, 15000);
     }
 }
