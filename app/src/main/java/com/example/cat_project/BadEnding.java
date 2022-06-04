@@ -14,6 +14,8 @@ public class BadEnding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bad_ending);
+        final TextView ending = (TextView) findViewById(R.id.bEnding);
+        Button btnCon = (Button) findViewById(R.id.btnCon);
 
         TimerTask task = new TimerTask() {
             @Override
