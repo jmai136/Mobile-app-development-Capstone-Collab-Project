@@ -16,21 +16,27 @@ public class Credits extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String[] creators = {"Jude Mai", "Sharri Brascher", "Boots Beats", "Willow"};
+        String[] creators = {"Game Programmers:", "Jude Mai", "Sharri Brascher","Music By:", "Boots Beats", "Art By:", "Aaron McGuire"};
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, creators));
     }
-    protected void onListItemClick (ListView l, View v, int position, long id){
+    protected void onListItemClick (ListView l, View v, int position, long id) {
         switch (position) {
             case 0:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/maict24")));
                 break;
             case 1:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Shar3019")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/maict24")));
                 break;
             case 2:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/c/BootsBeats")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Shar3019")));
                 break;
             case 3:
+                break;
+            case 4:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/c/BootsBeats")));
+                break;
+            case 5:
+                break;
+            case 6:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://marketplace.roll20.net/browse/publisher/1943/willow")));
                 break;
         }
