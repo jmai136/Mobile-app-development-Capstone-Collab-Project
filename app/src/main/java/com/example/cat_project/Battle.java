@@ -76,6 +76,7 @@ public class Battle extends AppCompatActivity {
                 battle(20000, new Mouse(100, 150));
                 break;
             case PHASE_TWO:
+                battle(15000, new Mice(150, 200));
                 break;
             case PHASE_THREE:
                 battle(10000, new Killer());
@@ -343,15 +344,15 @@ public class Battle extends AppCompatActivity {
     public class Mice extends Character {
         public Mice(int minHP, int maxHP) {
             this.HP = rng.nextInt((maxHP - minHP) + minHP);
-            this.DmgMin1 = 2;
-            this.DmgMin2 = 4;
-            this.DmgMin3 = 7;
-            this.DmgMin4 = 7;
+            this.DmgMin1 = 4;
+            this.DmgMin2 = 8;
+            this.DmgMin3 = 14;
+            this.DmgMin4 = 14;
 
-            this.DmgMax1 = 18;
-            this.DmgMax2 = 12;
-            this.DmgMax3 = 14;
-            this.DmgMax4 = 15;
+            this.DmgMax1 = 36;
+            this.DmgMax2 = 24;
+            this.DmgMax3 = 28;
+            this.DmgMax4 = 30;
 
             this.AtkTxt1 = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
             this.AtkTxt2 = "The mouse discovered a bunch of toothpicks. He is looking around.";
