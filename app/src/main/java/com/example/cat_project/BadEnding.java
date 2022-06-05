@@ -14,16 +14,28 @@ public class BadEnding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bad_ending);
+        final TextView ending = (TextView) findViewById(R.id.bEnding);
+        Button btnCon = (Button) findViewById(R.id.btnCon);
 
-        TimerTask task = new TimerTask() {
+        //timer to start text and btn
+        new CountDownTimer(3500, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ending.setVisibility(View.INVISIBLE);
+                btnCon.setVisibility(View.INVISIBLE);
+            }
+
+            public void onFinish() {
+                ending.setVisibility(View.VISIBLE);
+                btnCon.setVisibility(View.VISIBLE);
+            }
+        }.start();
+
+        //listener button takes player to credits.java
+        btnCon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                finish();
+            public void onClick(View v) {
                 startActivity(new Intent(BadEnding.this, Credits.class));
             }
-        };
-        Timer opening = new Timer();
-        opening.schedule(task, 10000);
-    }
+        });
     }
 }

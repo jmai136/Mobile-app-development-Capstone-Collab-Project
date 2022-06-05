@@ -13,4 +13,25 @@
         android:scaleType="fitXY"
         android:layout_margin="0dp"
         app:srcCompat="@drawable/badendingpixel" />
+
+    <TextView
+        android:id="@+id/bEnding"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/bEnding"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btnCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:text="@string/btnCon"
+        android:textSize="25sp" />
 </RelativeLayout>

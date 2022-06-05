@@ -2,6 +2,7 @@
     <string name="app_name">Cat Adventure Game</string>
     <string name="txtSplash">Cat Adventure Game</string>
     <string name="btnLivingRoom">Go To The Living Room</string>
+    <string name="btnCon">Continue</string>
     <string name="imgPantry">Pantry Door Image</string>
     <string name="imgDead">Dead Owner Image</string>
     <string name="txtKitchen1">Meow... Meow...</string>
@@ -12,7 +13,6 @@
     <string name="atk2">Bite: 8 - 10 DMG</string>
     <string name="atk3">Swipe: 9 - 12 DMG</string>
     <string name="atk4">Hiss 2 - 20 DMG</string>
-    <string name="gEnding">You\'ve escaped and are free to start a new life. You can\'t stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you next...</string>
+    <string name="gEnding">You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...</string>
     <string name="bEnding">Not only were you humiliated by a bunch of mice, but the shadowy figure that killed your owner has defeated you as well. What will become of you now?</string>
-    <string name="txtCredits">Game Creators:</string>
 </resources>
