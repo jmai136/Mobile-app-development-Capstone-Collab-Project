@@ -76,9 +76,6 @@ public class Battle extends AppCompatActivity {
                 battle(20000, new Mouse(100, 150));
                 break;
             case PHASE_TWO:
-                // hm, how to do array of mice here
-                Mouse mouseGrp[] = {new Mouse(100, 150), new Mouse(100, 180), new Mouse(100, 270), new Mouse(100, 220), new Mouse(100, 230)};
-                battle(15000, mouseGrp);
                 break;
             case PHASE_THREE:
                 battle(10000, new Killer());
@@ -158,11 +155,6 @@ public class Battle extends AppCompatActivity {
             }
         }.start();
 
-        return;
-    }
-
-    // for the second battle
-    private void battle(long countdownTimerDuration, Mouse[] mouse) {
         return;
     }
 
@@ -321,16 +313,35 @@ public class Battle extends AppCompatActivity {
     }
 
     public class Mouse extends Character {
-        final protected Mouse mousePhaseTwo[] =
-                {
-                        new Mouse(100, 150),
-                        new Mouse(100, 180),
-                        new Mouse(100, 270),
-                        new Mouse(100, 220),
-                        new Mouse(100, 230)
-                };
-
         public Mouse(int minHP, int maxHP) {
+            this.HP = rng.nextInt((maxHP - minHP) + minHP);
+            this.DmgMin1 = 2;
+            this.DmgMin2 = 4;
+            this.DmgMin3 = 7;
+            this.DmgMin4 = 7;
+
+            this.DmgMax1 = 18;
+            this.DmgMax2 = 12;
+            this.DmgMax3 = 14;
+            this.DmgMax4 = 15;
+
+            this.AtkTxt1 = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
+            this.AtkTxt2 = "The mouse discovered a bunch of toothpicks. He is looking around.";
+            this.AtkTxt3 = "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!";
+            this.AtkTxt4 = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
+            this.Missed = "The mice missed.";
+        }
+
+        @Override
+        public void deathScreen() {
+            // mouse dies,
+            // cutscene for mouse reformation
+            // spawns killer
+        }
+    }
+
+    public class Mice extends Character {
+        public Mice(int minHP, int maxHP) {
             this.HP = rng.nextInt((maxHP - minHP) + minHP);
             this.DmgMin1 = 2;
             this.DmgMin2 = 4;
