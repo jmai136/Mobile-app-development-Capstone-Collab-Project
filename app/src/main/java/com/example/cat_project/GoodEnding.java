@@ -35,11 +35,6 @@ public class GoodEnding extends AppCompatActivity {
         }.start();
 
         //listener button takes player to credits.java
-        btnCon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GoodEnding.this, Credits.class));
-            }
-        });
+        btnCon.setOnClickListener(v -> startActivity(new Intent(GoodEnding.this, Credits.class)));
     }
 }
