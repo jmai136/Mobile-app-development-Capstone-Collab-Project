@@ -74,7 +74,6 @@ public class Battle extends AppCompatActivity {
         // make switch actually work, phases can only be PHASE_ONE
         switch (phases) {
             case PHASE_ONE:
-                // insert battle with argument
                 battle(20000, new Mouse(100, 150));
                 break;
             case PHASE_TWO:
@@ -84,9 +83,7 @@ public class Battle extends AppCompatActivity {
                 battle(10000, new Killer());
                 break;
             default:
-                // ending screen
                 mpMusic.stop();
-
                 Snackbar.make(relativeLayout, "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
                 break;
         }
@@ -96,13 +93,8 @@ public class Battle extends AppCompatActivity {
         new CountDownTimer(countdownTimerDuration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                // do I even need this variable, why not just pass it directly since it ticks every millisecond anyways
-                // String timerDurationTxt = String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60));;
-
-                // set converted string onto textview
                 txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) millisUntilFinished / 1000 % 60));
 
-                // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
                 btnLockIn.setOnClickListener(view -> onFinish());
             }
@@ -110,23 +102,19 @@ public class Battle extends AppCompatActivity {
             public void onFinish() {
                 txtTimer.setText("");
 
-                // apply damage to both characters
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
                 Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
 
-                // check if player's dead first
                 if (cat.getIsDead())
                     cat.deathScreen();
 
-                // then enemy
                 if (Subclass.getIsDead()) {
                     phases.next();
                     return;
                 }
 
-                // if neither deaths is true, run the timer again
                 onTick(countdownTimerDuration);
             }
         }.start();
