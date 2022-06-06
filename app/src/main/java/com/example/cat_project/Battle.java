@@ -26,11 +26,11 @@ public class Battle extends AppCompatActivity {
     private TextView txtTimer, txtHPAll;
     private MediaPlayer mpMusic;
 
-    final ImageView body = (ImageView) findViewById(R.id.body);
+    /*final ImageView body = (ImageView) findViewById(R.id.body);
     final ImageView rat1 = (ImageView) findViewById(R.id.rat1);
     final ImageView rat2 = (ImageView) findViewById(R.id.rat2);
     final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
-    final ImageView killer = (ImageView) findViewById(R.id.killer);
+    final ImageView killer = (ImageView) findViewById(R.id.killer);*/
 
     public RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
