@@ -70,6 +70,7 @@ public class Battle extends AppCompatActivity {
 
         phases = Phases.PHASE_ONE;
 
+        // make switch actually work, phases can only be PHASE_ONE
         switch (phases) {
             case PHASE_ONE:
                 // insert battle with argument
@@ -85,16 +86,9 @@ public class Battle extends AppCompatActivity {
                 // ending screen
                 mpMusic.stop();
 
-                Snackbar.make(
-                        relativeLayout,
-                        "You won, and although you will never be free from your scars, you can always start on a new beginning.",
-                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                        startActivity(new Intent(Battle.this, GoodEnding.class));
-                    }
-                }).show();
+                // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                startActivity(new Intent(Battle.this, GoodEnding.class));
+
                 break;
         }
     }
@@ -107,7 +101,7 @@ public class Battle extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
                 // convert milliseconds to seconds
-                String timerDurationTxt = String.format(Locale.getDefault(),  "%02d",  (int)(millisUntilFinished/1000)%60);;
+                String timerDurationTxt = String.format(Locale.getDefault(),  "%02d",  (int)((millisUntilFinished/1000)%60));;
 
                 // set converted string onto textview
                 txtTimer.setText(timerDurationTxt);
@@ -250,16 +244,8 @@ public class Battle extends AppCompatActivity {
 
         @Override
         public void deathScreen() {
-            Snackbar.make(
-                    relativeLayout,
-                    "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
-                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                    startActivity(new Intent(Battle.this, BadEnding.class));
-                }
-            }).show();
+            // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+            startActivity(new Intent(Battle.this, BadEnding.class));
         }
     }
 
