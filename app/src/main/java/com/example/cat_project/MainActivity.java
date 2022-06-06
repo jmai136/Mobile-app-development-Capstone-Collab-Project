@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         button.setVisibility(View.VISIBLE);
                     }
                 }.start();
-            }
+                }
         });
 
         //listener trash can shows toast notification
