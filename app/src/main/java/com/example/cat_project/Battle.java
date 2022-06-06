@@ -86,9 +86,16 @@ public class Battle extends AppCompatActivity {
                 // ending screen
                 mpMusic.stop();
 
-                // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                startActivity(new Intent(Battle.this, GoodEnding.class));
-
+                Snackbar.make(
+                        relativeLayout,
+                        "You won, and although you will never be free from your scars, you can always start on a new beginning.",
+                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                        startActivity(new Intent(Battle.this, GoodEnding.class));
+                    }
+                }).show();
                 break;
         }
     }
@@ -244,8 +251,16 @@ public class Battle extends AppCompatActivity {
 
         @Override
         public void deathScreen() {
-            // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-            startActivity(new Intent(Battle.this, BadEnding.class));
+            Snackbar.make(
+                    relativeLayout,
+                    "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
+                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
+                    startActivity(new Intent(Battle.this, BadEnding.class));
+                }
+            }).show();
         }
     }
 
