@@ -36,7 +36,7 @@ public class GoodEnding extends AppCompatActivity {
                 // btnCon.setVisibility(View.VISIBLE);
 
                 RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
-                Snackbar.make(relativeLayout, "You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(GoodEnding.this, Credits.class))).show();
+                Snackbar.make(relativeLayout, "You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(GoodEnding.this, Credits.class))).show();
             }
         }.start();
 
