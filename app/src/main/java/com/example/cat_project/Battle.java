@@ -98,7 +98,7 @@ public class Battle extends AppCompatActivity {
                 // String timerDurationTxt = String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60));;
 
                 // set converted string onto textview
-                txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60)));
+                txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) millisUntilFinished / 1000 % 60);
 
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
