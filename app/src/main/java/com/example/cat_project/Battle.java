@@ -37,13 +37,14 @@ public class Battle extends AppCompatActivity {
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
-        PHASE_THREE
-                {
-                    @Override
-                    public Phases next() {
-                        return null;
-                    };
-                };
+        PHASE_THREE {
+            @Override
+            public Phases next() {
+                return null;
+            }
+
+            ;
+        };
 
         public Phases next() {
             // No bounds checking required here, because the last instance overrides
@@ -66,7 +67,7 @@ public class Battle extends AppCompatActivity {
         mpMusic.start();
 
         radioGroup = findViewById(R.id.radioGroup);
-        // txtTimer = findViewById(R.id.txtTimer);
+        txtTimer = findViewById(R.id.txtTimer);
 
         phases = Phases.PHASE_ONE;
 
@@ -89,7 +90,7 @@ public class Battle extends AppCompatActivity {
                 Snackbar.make(
                         relativeLayout,
                         "You won, and although you will never be free from your scars, you can always start on a new beginning.",
-                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener(){
+                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
@@ -102,13 +103,13 @@ public class Battle extends AppCompatActivity {
 
     // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
-
         // maybe make a CountDownTimer modifiable variable that the methods can be 'overridden'
         new CountDownTimer(countdownTimerDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 // countdown on screen
                 // convert milliseconds to seconds
-                String timerDurationTxt = String.format(Locale.getDefault(),  "%02d",  (int)((millisUntilFinished/1000)%60));;
+                String timerDurationTxt = String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60));
+                ;
 
                 // set converted string onto textview
                 txtTimer.setText(timerDurationTxt);
@@ -134,8 +135,8 @@ public class Battle extends AppCompatActivity {
 
                 Snackbar.make(
                         relativeLayout,
-                        "Cat damages at: " + cat.getDamageVal() + ", " +  cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
-                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
+                        "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
+                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show();
@@ -159,10 +160,14 @@ public class Battle extends AppCompatActivity {
     }
 
     // grab the radio id the player clicked on
-    private int getRadioID() { return radioGroup.getCheckedRadioButtonId(); }
+    private int getRadioID() {
+        return radioGroup.getCheckedRadioButtonId();
+    }
 
     // randomised choice of attack reserved for mouse and killer, it's 0-4 so the enemies can miss
-    private int getChoice ()  { return new Random().nextInt(4); }
+    private int getChoice() {
+        return new Random().nextInt(4);
+    }
 
     // superclass
     private static class Character {
@@ -220,11 +225,17 @@ public class Battle extends AppCompatActivity {
             return HP -= Dmg.first;
         }
 
-        protected boolean getIsDead() { return (HP <= 0);}
+        protected boolean getIsDead() {
+            return (HP <= 0);
+        }
 
         protected void deathScreen() {
-        };
-    };
+        }
+
+        ;
+    }
+
+    ;
 
     // inner classes
     public class Cat extends Character {
@@ -252,7 +263,7 @@ public class Battle extends AppCompatActivity {
             Snackbar.make(
                     relativeLayout,
                     "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
-                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener(){
+                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
@@ -343,3 +354,4 @@ public class Battle extends AppCompatActivity {
             Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
         }
     }
+}
