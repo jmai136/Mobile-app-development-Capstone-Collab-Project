@@ -91,12 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mpMusic.stop();
-                Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(MainActivity.this, Battle.class));
-                    }
-                }).show();
+                Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", view ->  startActivity(new Intent(MainActivity.this, Battle.class))).show();
             }
         });
     }
