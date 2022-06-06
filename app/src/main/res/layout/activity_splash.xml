@@ -13,9 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="206dp"
+        android:layout_marginTop="35dp"
         android:text="@string/txtSplash"
         android:textAlignment="center"
         android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/imgCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:contentDescription="Cat Image"
+        app:srcCompat="@drawable/cat" />
 
 </RelativeLayout>
