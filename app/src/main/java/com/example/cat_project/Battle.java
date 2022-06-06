@@ -202,11 +202,7 @@ public class Battle extends AppCompatActivity {
 
         protected void deathScreen() {
         }
-
-        ;
     }
-
-    ;
 
     // inner classes
     public class Cat extends Character {
