@@ -94,7 +94,7 @@ public class Battle extends AppCompatActivity {
                         // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
                         startActivity(new Intent(Battle.this, GoodEnding.class));
                     }
-                });
+                }).show();
                 break;
         }
     }
@@ -139,7 +139,7 @@ public class Battle extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show();
                     }
-                });
+                }).show();
 
                 // check if player's dead first
                 if (cat.getIsDead())
@@ -164,56 +164,6 @@ public class Battle extends AppCompatActivity {
 
     // randomised choice of attack reserved for mouse and killer, it's 0-4 so the enemies can miss
     private int getChoice ()  { return new Random().nextInt(4); }
-
-    /*private void secondBattle() {
-        // countdown timer, 20 seconds is equal to 20000 milliseconds
-        long duration = 10000;
-        // final Mouse mouse.mousePhaseTwo[];
-
-        new CountDownTimer(duration, 1000) {
-            public void onTick(long millisUntilFinished) {
-                // countdown on screen
-                // convert milliseconds to seconds
-                // String sDur = String.format(Locale.ENGLISH, "%02d", TimeUnit.MILLISECOND(1));
-
-                // set converted string onto textview
-                // txtTimer.setText(sDur);
-
-                // allows for battle options which should be radio groups
-                // playerBattleOption(radioGroup);
-
-                Button btnLockIn = findViewById(R.id.btnLockIn);
-                btnLockIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // finish the timer automatically
-                        onFinish();
-                    }
-                });
-            }
-
-            public void onFinish() {
-                int catDmg = 0;
-
-                for (int mouse = 0; mouse < mousePhaseTwo.length ; mouse++)
-                    catDmg += cat.applyDmg(mousePhaseTwo[mouse].mouseBattleOption(rng.nextInt(4)));
-
-                // check if player's dead first
-                if (isDead(catDmg))
-                    cat.deathScreen();
-
-                // apply damage to both characters
-                if (mousePhaseTwo.length <= 0)
-                    return;
-
-                // set text timer to show what has happened
-                txtTimer.setText(playerAttackText(radioGroup));
-
-                // if neither deaths is true, run the timer again
-                onTick(duration);
-            }
-        }.start();
-    }*/
 
     // superclass
     private static class Character {
@@ -309,7 +259,7 @@ public class Battle extends AppCompatActivity {
                     // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
                     startActivity(new Intent(Battle.this, BadEnding.class));
                 }
-            });
+            }).show();
         }
     }
 
