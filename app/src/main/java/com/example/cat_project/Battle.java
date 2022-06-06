@@ -156,8 +156,6 @@ public class Battle extends AppCompatActivity {
                 onTick(countdownTimerDuration);
             }
         }.start();
-
-        return;
     }
 
     // grab the radio id the player clicked on
@@ -215,7 +213,7 @@ public class Battle extends AppCompatActivity {
                     break;
             }
 
-            return new Pair<Integer, String>(dmg, atkTxt);
+            return new Pair<>(dmg, atkTxt);
         }
 
         protected int setApplyDmg(Pair<Integer, String> Dmg) {
