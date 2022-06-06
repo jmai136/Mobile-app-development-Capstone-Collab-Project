@@ -79,32 +79,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //listener trash can shows toast notification
-        btnTrash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(relativeLayout, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
-                    }
-                }).show();
-            }
-        });
-
-        // btnCounter.setOnClickListener(view -> );
+        btnTrash.setOnClickListener(view -> Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener counter shows toast notification
-        btnCounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
+        btnCounter.setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show());
 
         //listener button takes player to battle.java
         button.setOnClickListener(new View.OnClickListener() {

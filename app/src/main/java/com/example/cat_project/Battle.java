@@ -26,11 +26,11 @@ public class Battle extends AppCompatActivity {
     private TextView txtTimer, txtHPAll;
     private MediaPlayer mpMusic;
 
-    /*final ImageView body = (ImageView) findViewById(R.id.body);
+     ImageView body = (ImageView) findViewById(R.id.body);
     final ImageView rat1 = (ImageView) findViewById(R.id.rat1);
     final ImageView rat2 = (ImageView) findViewById(R.id.rat2);
     final ImageView ratAlone = (ImageView) findViewById(R.id.ratAlone);
-    final ImageView killer = (ImageView) findViewById(R.id.killer);*/
+    final ImageView killer = (ImageView) findViewById(R.id.killer);
 
     public RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
@@ -42,8 +42,6 @@ public class Battle extends AppCompatActivity {
             public Phases next() {
                 return null;
             }
-
-            ;
         };
 
         public Phases next() {
@@ -87,16 +85,7 @@ public class Battle extends AppCompatActivity {
                 // ending screen
                 mpMusic.stop();
 
-                Snackbar.make(
-                        relativeLayout,
-                        "You won, and although you will never be free from your scars, you can always start on a new beginning.",
-                        Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                        startActivity(new Intent(Battle.this, GoodEnding.class));
-                    }
-                }).show();
+                Snackbar.make(relativeLayout, "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
                 break;
         }
     }
@@ -116,7 +105,6 @@ public class Battle extends AppCompatActivity {
 
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
-
                 btnLockIn.setOnClickListener(view -> onFinish());
             }
 
@@ -254,16 +242,7 @@ public class Battle extends AppCompatActivity {
 
         @Override
         public void deathScreen() {
-            Snackbar.make(
-                    relativeLayout,
-                    "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.",
-                    Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // do we even need another activity? Just an image with a splash screen and snackbar explaining was happened would be good enough.
-                    startActivity(new Intent(Battle.this, BadEnding.class));
-                }
-            }).show();
+           Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
         }
     }
 
