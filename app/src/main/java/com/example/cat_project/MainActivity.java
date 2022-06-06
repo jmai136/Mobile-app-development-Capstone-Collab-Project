@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
                 button.setVisibility(View.INVISIBLE);
                 handler.postDelayed(() -> button.setVisibility(View.VISIBLE), 3500);
+
+                Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Snackbar.LENGTH_INDEFINITE);
+                View pantryView = pantry.getView();
+
                 }
         });
 
