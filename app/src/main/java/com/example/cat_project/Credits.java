@@ -40,7 +40,7 @@ public class Credits extends ListActivity {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://marketplace.roll20.net/browse/publisher/1943/willow")));
                 break;
             case 7:
-                startActivity(new Intent (Credits.this, MainActivity.class));
+                startActivity(new Intent (Credits.this, Splash.class));
                 break;
         }
     }
