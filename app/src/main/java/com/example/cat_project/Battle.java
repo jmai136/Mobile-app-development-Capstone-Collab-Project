@@ -117,13 +117,7 @@ public class Battle extends AppCompatActivity {
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
 
-                btnLockIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // finish the timer automatically
-                        onFinish();
-                    }
-                });
+                btnLockIn.setOnClickListener(view -> onFinish());
             }
 
             public void onFinish() {

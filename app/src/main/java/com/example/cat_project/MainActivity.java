@@ -87,9 +87,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
                     }
-                });
+                }).show();
             }
         });
+
+        // btnCounter.setOnClickListener(view -> );
 
         //listener counter shows toast notification
         btnCounter.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         startActivity(new Intent(MainActivity.this, Battle.class));
                     }
-                });
+                }).show();
             }
         });
     }
