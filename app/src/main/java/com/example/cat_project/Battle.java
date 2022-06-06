@@ -1,5 +1,6 @@
 package com.example.cat_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -182,7 +183,7 @@ public class Battle extends AppCompatActivity {
             return new Pair<>(dmg, atkTxt);
         }
 
-        protected int setApplyDmg(Pair<Integer, String> Dmg) {
+        protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) {
             return HP -= Dmg.first;
         }
 
