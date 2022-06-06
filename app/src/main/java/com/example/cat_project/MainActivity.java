@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
         final ImageView imageView = (ImageView) findViewById(R.id.imgKitchenPixel);
         final TextView kitchen1 = (TextView) findViewById(R.id.txtKitchen1);
         final TextView kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
-        Button button = (Button) findViewById(R.id.btnLivingRoom);
-        Button btnPantry = (Button) findViewById(R.id.btnPantry);
-        Button btnTrash = (Button) findViewById(R.id.btnTrash);
-        Button btnCounter = (Button) findViewById(R.id.btnCounter);
+        Button button = (Button) findViewById(R.id.btnLivingRoom),
+                btnPantry = (Button) findViewById(R.id.btnPantry),
+                btnTrash = (Button) findViewById(R.id.btnTrash),
+                btnCounter = (Button) findViewById(R.id.btnCounter);
+        // Button btnPantry = (Button) findViewById(R.id.btnPantry);
+        // Button btnTrash = (Button) findViewById(R.id.btnTrash);
+        // Button btnCounter = (Button) findViewById(R.id.btnCounter);
 
         //music
         mpMusic = new MediaPlayer();
