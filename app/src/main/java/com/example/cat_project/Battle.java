@@ -90,24 +90,21 @@ public class Battle extends AppCompatActivity {
         }
     }
 
-    // if possible, make a universal method
     private void battle(long countdownTimerDuration, Character Subclass) {
-        // maybe make a CountDownTimer modifiable variable that the methods can be 'overridden'
         new CountDownTimer(countdownTimerDuration, 1000) {
+            @Override
             public void onTick(long millisUntilFinished) {
-                // countdown on screen
-                // convert milliseconds to seconds
-                String timerDurationTxt = String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60));
-                ;
+                // do I even need this variable, why not just pass it directly since it ticks every millisecond anyways
+                // String timerDurationTxt = String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60));;
 
                 // set converted string onto textview
-                txtTimer.setText(timerDurationTxt);
+                txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) ((millisUntilFinished / 1000) % 60)));
 
                 // button to skip to fight
                 Button btnLockIn = findViewById(R.id.btnLockIn);
                 btnLockIn.setOnClickListener(view -> onFinish());
             }
-
+            @Override
             public void onFinish() {
                 txtTimer.setText("");
 
@@ -115,15 +112,7 @@ public class Battle extends AppCompatActivity {
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar.make(
-                        relativeLayout,
-                        "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),
-                        Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show();
-                    }
-                }).show();
+                Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
 
                 // check if player's dead first
                 if (cat.getIsDead())
