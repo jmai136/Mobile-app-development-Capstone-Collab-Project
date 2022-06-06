@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 kitchen2.setVisibility(View.VISIBLE);
             }
         }.start();
-*/
+
         //listener pantry button toast shows img and txt
         btnPantry.setOnClickListener(new View.OnClickListener() {
             @Override
