@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,16 +23,30 @@ public class MainActivity extends AppCompatActivity {
     //global variables for music
     MediaPlayer mpMusic;
 
+    private final TextView
+            kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
+            kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
+
     private RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+
+    // false is 1, true is 2
+    private void ToggleKitchenVisibility(boolean FirstVisibleXorSecVisible) {
+        if (FirstVisibleXorSecVisible) {
+            kitchen1.setVisibility(View.INVISIBLE);
+            kitchen2.setVisibility(View.VISIBLE);
+        }
+        else {
+            kitchen1.setVisibility(View.VISIBLE);
+            kitchen2.setVisibility(View.INVISIBLE);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView imageView = (ImageView) findViewById(R.id.imgKitchenPixel);
-        final TextView
-                kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
-                kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
+
         Button
                 button = (Button) findViewById(R.id.btnLivingRoom),
                 btnPantry = (Button) findViewById(R.id.btnPantry),
@@ -44,17 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.setLooping(true);
         mpMusic.start();
 
+        ToggleKitchenVisibility(false);
+
         //timer to set first txt invisible, second txt vis
-        new CountDownTimer(3500, 1000) {
-            public void onTick(long millisUntilFinished) {
-                kitchen1.setVisibility(View.VISIBLE);
-                kitchen2.setVisibility(View.INVISIBLE);
-            }
-            public void onFinish() {
-                kitchen1.setVisibility(View.INVISIBLE);
-                kitchen2.setVisibility(View.VISIBLE);
-            }
-        }.start();
+        Handler handler = new Handler();
+        handler.postDelayed(() -> ToggleKitchenVisibility(true), 3500);
 
         //listener pantry button toast shows img and txt
         btnPantry.setOnClickListener(new View.OnClickListener() {
@@ -68,15 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
                 Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
 
-                //delay button visibility
-                new CountDownTimer(3500, 1000) {
-                    public void onTick(long millisUntilFinished) {
-                        button.setVisibility(View.INVISIBLE);
-                    }
-                    public void onFinish() {
-                        button.setVisibility(View.VISIBLE);
-                    }
-                }.start();
+                button.setVisibility(View.INVISIBLE);
+                handler.postDelayed(() -> button.setVisibility(View.VISIBLE), 3500);
                 }
         });
 
