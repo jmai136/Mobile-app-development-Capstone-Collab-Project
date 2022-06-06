@@ -26,11 +26,6 @@ public class BadEnding extends AppCompatActivity {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Snackbar.make(relativeLayout, "Not only were you humiliated by a bunch of mice, but the shadowy figure that killed your owner has defeated you as well. What will become of you now?", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(BadEnding.this, Credits.class))).show();
-            }
-        }, 3500);
+        handler.postDelayed(() -> Snackbar.make(relativeLayout, "Not only were you humiliated by a bunch of mice, but the shadowy figure that killed your owner has defeated you as well. What will become of you now?", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(BadEnding.this, Credits.class))).show(), 3500);
     }
 }
