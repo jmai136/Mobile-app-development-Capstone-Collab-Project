@@ -106,6 +106,8 @@ public class Battle extends AppCompatActivity {
                 txtTimer.setText("");
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
+
+                // fix cat's damage, do radioIDs start at 1 or 0
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
                 Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
@@ -118,7 +120,8 @@ public class Battle extends AppCompatActivity {
                     return;
                 }
 
-                onTick(countdownTimerDuration);
+                // loops if not dead
+                start();
             }
         }.start();
     }
