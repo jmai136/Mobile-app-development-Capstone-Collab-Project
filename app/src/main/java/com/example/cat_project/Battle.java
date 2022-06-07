@@ -124,8 +124,24 @@ public class Battle extends AppCompatActivity {
 
     // grab the radio id the player clicked on
     private int getRadioID() {
+        int choice = 0;
+
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
-        return radioGroup.getCheckedRadioButtonId();
+        switch(radioGroup.getCheckedRadioButtonId()) {
+            case R.id.one:
+                choice = 0;
+                break;
+            case R.id.two:
+                choice = 1;
+                break;
+            case R.id.three:
+                choice = 2;
+                break;
+            case R.id.four:
+                choice = 3;
+                break;
+        }
+        return choice;
     }
 
     // randomised choice of attack reserved for mouse and killer, it's 0-4 so the enemies can miss
