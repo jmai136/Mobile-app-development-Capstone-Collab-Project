@@ -100,12 +100,13 @@ public class Battle extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
+                cancel();
                 txtTimer.setText("");
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + " Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show());
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> start());
                 TextView snackTextView = (TextView) attacks .getView().findViewById(com.google.android.material.R.id.snackbar_text);
                 snackTextView.setMaxLines(99);
                 attacks.show();
@@ -117,9 +118,6 @@ public class Battle extends AppCompatActivity {
                     phases.next();
                     return;
                 }
-
-                // loops if not dead
-                start();
             }
         }.start();
     }
