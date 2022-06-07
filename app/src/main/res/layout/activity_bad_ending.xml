@@ -24,7 +24,9 @@
         android:layout_marginTop="20dp"
         android:text="@string/bEnding"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:visibility="invisible"
+        tools:visibility="invisible"/>
 
     <Button
         android:id="@+id/btnCon"
@@ -34,5 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp"
         android:text="@string/btnCon"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:visibility="invisible"
+        tools:visibility="invisible"/>
 </RelativeLayout>
