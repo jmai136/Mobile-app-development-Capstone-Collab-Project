@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.Random;
 
 public class Battle extends AppCompatActivity {
-    private TextView txtTimer;
     private MediaPlayer mpMusic;
 
     ImageView body = (ImageView) findViewById(R.id.body);
@@ -66,8 +65,6 @@ public class Battle extends AppCompatActivity {
         mpMusic.setLooping(true);
         mpMusic.start();
 
-        txtTimer = findViewById(R.id.txtTimer);
-
         phases = Phases.PHASE_ONE;
 
         // make switch actually work, phases can only be PHASE_ONE
@@ -90,6 +87,7 @@ public class Battle extends AppCompatActivity {
 
     private void battle(long countdownTimerDuration, Character Subclass) {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+        TextView txtTimer = findViewById(R.id.txtTimer);;
 
         new CountDownTimer(countdownTimerDuration, 1000) {
             @Override
@@ -108,7 +106,7 @@ public class Battle extends AppCompatActivity {
                 // fix cat's damage, do radioIDs start at 1 or 0
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
+                Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\nEnemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
 
                 if (cat.getIsDead())
                     Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
