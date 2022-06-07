@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.Random;
 
 public class Battle extends AppCompatActivity {
-    private RadioGroup radioGroup;
     private TextView txtTimer;
     private MediaPlayer mpMusic;
 
@@ -128,6 +127,7 @@ public class Battle extends AppCompatActivity {
 
     // grab the radio id the player clicked on
     private int getRadioID() {
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
         return radioGroup.getCheckedRadioButtonId();
     }
 
