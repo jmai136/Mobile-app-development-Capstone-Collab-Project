@@ -25,6 +25,16 @@ public class GoodEnding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_good_ending);
 
+        new Handler(getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.RelativeLayout), "You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(GoodEnding.this, Credits.class)));
+                TextView snackTextView = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+                snackTextView.setMaxLines(99);
+                snackbar.show();
+            }
+        }, 3500);
+
         // new Handler(getMainLooper()).postDelayed(() -> Snackbar.make(findViewById(R.id.RelativeLayout), "You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(GoodEnding.this, Credits.class))).show(),3500);
 
         /*final TextView ending = (TextView) findViewById(R.id.gEnding);

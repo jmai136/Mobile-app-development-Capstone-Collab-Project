@@ -23,7 +23,18 @@ public class BadEnding extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bad_ending);
-        final TextView ending = (TextView) findViewById(R.id.bEnding);
+
+        new Handler(getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.RelativeLayout), "Not only were you humiliated by a bunch of mice, but the shadowy figure that killed your owner has defeated you as well. What will become of you now?", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(BadEnding.this, Credits.class)));
+                TextView snackTextView = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+                snackTextView.setMaxLines(99);
+                snackbar.show();
+            }
+        }, 3500);
+
+        /*final TextView ending = (TextView) findViewById(R.id.bEnding);
         Button btnCon = (Button) findViewById(R.id.btnCon);
 
         ending.setVisibility(View.INVISIBLE);
@@ -37,6 +48,6 @@ public class BadEnding extends AppCompatActivity {
             }
         }, 3500);
 
-        btnCon.setOnClickListener(view -> startActivity(new Intent(BadEnding.this, Credits.class)));
+        btnCon.setOnClickListener(view -> startActivity(new Intent(BadEnding.this, Credits.class)));*/
     }
 }
