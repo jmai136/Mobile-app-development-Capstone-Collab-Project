@@ -27,25 +27,18 @@ public class GoodEnding extends AppCompatActivity {
         final TextView ending = (TextView) findViewById(R.id.gEnding);
         Button btnCon = (Button) findViewById(R.id.btnCon);
 
-        //timer to start text and btn
-        new CountDownTimer(3500, 1000) {
-            public void onTick(long millisUntilFinished) {
-                ending.setVisibility(View.INVISIBLE);
-                btnCon.setVisibility(View.INVISIBLE);
-            }
+        ending.setVisibility(View.INVISIBLE);
+        btnCon.setVisibility(View.INVISIBLE);
 
-            public void onFinish() {
+        new Handler(getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
                 ending.setVisibility(View.VISIBLE);
                 btnCon.setVisibility(View.VISIBLE);
             }
-        }.start();
+        }, 3500);
 
         //listener button takes player to credits.java
-        btnCon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GoodEnding.this, Credits.class));
-            }
-        });
+        btnCon.setOnClickListener(view -> startActivity(new Intent(GoodEnding.this, Credits.class)));
     }
 }
