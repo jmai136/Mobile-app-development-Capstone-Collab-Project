@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class Battle extends AppCompatActivity {
     private RadioGroup radioGroup;
-    private TextView txtTimer, txtHPAll;
+    private TextView txtTimer;
     private MediaPlayer mpMusic;
 
     ImageView body = (ImageView) findViewById(R.id.body);
