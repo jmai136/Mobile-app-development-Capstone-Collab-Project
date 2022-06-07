@@ -126,7 +126,7 @@ public class Battle extends AppCompatActivity {
 
     // grab the radio id the player clicked on
     private int getRadioID() {
-        int choice = 0;
+        int choice = 4;
 
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         switch(radioGroup.getCheckedRadioButtonId()) {
