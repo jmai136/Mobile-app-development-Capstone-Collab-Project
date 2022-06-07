@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         ToggleKitchenVisibility(false);
 
         //timer to set first txt invisible, second txt vis
-        Handler handler = new Handler();
-        handler.postDelayed(() -> ToggleKitchenVisibility(true), 3500);
+       new Handler(Looper.myLooper()).postDelayed(() -> ToggleKitchenVisibility(true), 3500);
 
         //listener pantry button toast shows img and txt
         btnPantry.setOnClickListener(new View.OnClickListener() {
