@@ -35,8 +35,6 @@ public class Battle extends AppCompatActivity {
             ratAlone = (ImageView) findViewById(R.id.ratAlone),
             killer = (ImageView) findViewById(R.id.killer);
 
-    public RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
-
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
@@ -60,6 +58,8 @@ public class Battle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+
+        RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
         //music
         mpMusic = new MediaPlayer();
@@ -91,6 +91,8 @@ public class Battle extends AppCompatActivity {
     }
 
     private void battle(long countdownTimerDuration, Character Subclass) {
+        RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+
         new CountDownTimer(countdownTimerDuration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -109,7 +111,7 @@ public class Battle extends AppCompatActivity {
                 Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n Enemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText(),  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> Toast.makeText(Battle.this, "You: " + cat.HP + "\n Enemy: " + Subclass.HP, Toast.LENGTH_LONG).show()).show();
 
                 if (cat.getIsDead())
-                    cat.deathScreen();
+                    Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
 
                 if (Subclass.getIsDead()) {
                     phases.next();
@@ -214,11 +216,6 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt3 = "You raise your mighty claws into the air and swipe down.";
             this.AtkTxt4 = "You concentrate and hit them all in one quick swipe!";
             this.Missed = "You missed";
-        }
-
-        @Override
-        public void deathScreen() {
-           Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
         }
     }
 
