@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 btnTrash = (Button) findViewById(R.id.btnTrash),
                 btnCounter = (Button) findViewById(R.id.btnCounter);
 
-        RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
+        RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
 
         //music
         mpMusic = new MediaPlayer();
