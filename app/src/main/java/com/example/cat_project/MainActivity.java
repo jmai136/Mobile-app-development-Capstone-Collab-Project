@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
             kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
             kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
 
-    private RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
-
     // false is 1, true is 2
     private void ToggleKitchenVisibility(boolean FirstVisibleXorSecVisible) {
         if (FirstVisibleXorSecVisible) {
@@ -52,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 btnPantry = (Button) findViewById(R.id.btnPantry),
                 btnTrash = (Button) findViewById(R.id.btnTrash),
                 btnCounter = (Button) findViewById(R.id.btnCounter);
+
+        RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
         //music
         mpMusic = new MediaPlayer();
