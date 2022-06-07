@@ -28,8 +28,8 @@
         android:text="@string/gEnding"
         android:textAlignment="center"
         android:textSize="25sp"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/btnCon"

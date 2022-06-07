@@ -18,12 +18,7 @@
             android:exported="true" />
         <activity
             android:name=".GoodEnding"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Splash"
             android:exported="true"/>
@@ -35,7 +30,12 @@
             android:exported="true"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

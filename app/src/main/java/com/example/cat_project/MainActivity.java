@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
 
     // false is 1, true is 2
-    private void ToggleKitchenVisibility(boolean FirstVisibleXorSecVisible) {
+    /*private void ToggleKitchenVisibility(boolean FirstVisibleXorSecVisible) {
         if (FirstVisibleXorSecVisible) {
             kitchen1.setVisibility(View.INVISIBLE);
             kitchen2.setVisibility(View.VISIBLE);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             kitchen1.setVisibility(View.VISIBLE);
             kitchen2.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +60,17 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.setLooping(true);
         mpMusic.start();
 
-        ToggleKitchenVisibility(false);
-
-        //timer to set first txt invisible, second txt vis
-       new Handler(Looper.myLooper()).postDelayed(() -> ToggleKitchenVisibility(true), 3500);
+        // if possible, replace with handler later
+        new CountDownTimer(3500, 1000) {
+            public void onTick(long millisUntilFinished) {
+                kitchen1.setVisibility(View.VISIBLE);
+                kitchen2.setVisibility(View.INVISIBLE);
+            }
+            public void onFinish() {
+                kitchen1.setVisibility(View.INVISIBLE);
+                kitchen2.setVisibility(View.VISIBLE);
+            }
+        }.start();
 
         //listener pantry button toast shows img and txt
         btnPantry.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
 
                 button.setVisibility(View.INVISIBLE);
-                handler.postDelayed(() -> button.setVisibility(View.VISIBLE), 3500);
-
-                Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Snackbar.LENGTH_INDEFINITE);
-                View pantryView = pantry.getView();
-
+                new Handler(Looper.myLooper()).postDelayed(() -> button.setVisibility(View.VISIBLE), 3500);
                 }
         });
 
