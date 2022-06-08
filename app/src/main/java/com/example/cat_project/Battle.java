@@ -38,7 +38,8 @@ public class Battle extends AppCompatActivity {
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
-        PHASE_THREE {
+        PHASE_THREE,
+        GOOD_ENDING {
             @Override
             public Phases next() {
                 return null;
@@ -86,8 +87,11 @@ public class Battle extends AppCompatActivity {
         mpMusic.start();
 
         phases = Phases.PHASE_ONE;
+        setPhases();
+    }
 
-        // make switch actually work, phases can only be PHASE_ONE
+    private void setPhases()
+    {
         switch (phases) {
             case PHASE_ONE:
                 battle(20000, new Mouse(100, 150));
@@ -99,8 +103,7 @@ public class Battle extends AppCompatActivity {
                 battle(10000, new Killer());
                 break;
             default:
-                mpMusic.stop();
-                Snackbar.make(relativeLayout, "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
+                Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
                 break;
         }
     }
@@ -108,19 +111,21 @@ public class Battle extends AppCompatActivity {
     private void battle(long countdownTimerDuration, Character Subclass) {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
         TextView txtTimer = findViewById(R.id.txtTimer);;
+        Button btnLockIn = findViewById(R.id.btnLockIn);
 
         new CountDownTimer(countdownTimerDuration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) millisUntilFinished / 1000 % 60));
 
-                Button btnLockIn = findViewById(R.id.btnLockIn);
+                btnLockIn.setVisibility(View.VISIBLE);
                 btnLockIn.setOnClickListener(view -> onFinish());
             }
             @Override
             public void onFinish() {
                 cancel();
                 txtTimer.setText("");
+                btnLockIn.setVisibility(View.GONE);
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
@@ -129,11 +134,10 @@ public class Battle extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (cat.getIsDead())
-                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v -> finish()).show();
+                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
                         else if (Subclass.getIsDead()) {
                             phases = phases.next();
-                            // doesn't return, wonder why
-                            return;
+                            setPhases();
                         }
                         else
                             start();
@@ -174,7 +178,7 @@ public class Battle extends AppCompatActivity {
     }
 
     // superclass
-    private static class Character {
+    private class Character {
         protected Random rng = new Random();
 
         protected int HP,
@@ -232,9 +236,6 @@ public class Battle extends AppCompatActivity {
         protected boolean getIsDead() {
             return (HP <= 0);
         }
-
-        protected void deathScreen() {
-        }
     }
 
     // inner classes
@@ -278,13 +279,6 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt4 = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
             this.Missed = "The mice missed.";
         }
-
-        @Override
-        public void deathScreen() {
-            // mouse dies,
-            // cutscene for mouse reformation
-            // spawns killer
-        }
     }
 
     public class Mice extends Character {
@@ -300,18 +294,11 @@ public class Battle extends AppCompatActivity {
             this.DmgMax3 = 28;
             this.DmgMax4 = 30;
 
-            this.AtkTxt1 = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
-            this.AtkTxt2 = "The mouse discovered a bunch of toothpicks. He is looking around.";
-            this.AtkTxt3 = "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!";
-            this.AtkTxt4 = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
+            this.AtkTxt1 = "The mice all gang up on you, you feel your skin crawling.";
+            this.AtkTxt2 = "The mice all decide to claw at your eyes, it hurts to some degree.";
+            this.AtkTxt3 = "The mouse are merciless, deciding to kick you swiftly while surrounding.";
+            this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
             this.Missed = "The mice missed.";
-        }
-
-        @Override
-        public void deathScreen() {
-            // mouse dies,
-            // cutscene for mouse reformation
-            // spawns killer
         }
     }
 
@@ -333,11 +320,6 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt3 = "Insert text here.";
             this.AtkTxt4 = "Insert text here.";
             this.Missed = "The killer missed.";
-        }
-
-        @Override
-        public void deathScreen() {
-            Toast.makeText(Battle.this, "Killer is dead", Toast.LENGTH_LONG).show();
         }
     }
 }
