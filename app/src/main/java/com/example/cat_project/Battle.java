@@ -292,7 +292,7 @@ public class Battle extends AppCompatActivity {
 
             this.AtkTxt1 = "The mice all gang up on you, you feel your skin crawling.";
             this.AtkTxt2 = "The mice all decide to claw at your eyes, it hurts to some degree.";
-            this.AtkTxt3 = "The mouse are merciless, deciding to kick you swiftly while surrounding.";
+            this.AtkTxt3 = "The mice are merciless, deciding to kick you swiftly while surrounding.";
             this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
             this.Missed = "The mice missed.";
         }
