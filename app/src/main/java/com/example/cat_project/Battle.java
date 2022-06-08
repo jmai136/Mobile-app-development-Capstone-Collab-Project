@@ -121,9 +121,8 @@ public class Battle extends AppCompatActivity {
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
+                    {
                         if (cat.getIsDead())
                             Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
                         else if (Subclass.getIsDead()) {
