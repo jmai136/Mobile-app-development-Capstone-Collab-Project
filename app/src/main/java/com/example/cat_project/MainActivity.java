@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ImageView imageView = (ImageView) findViewById(R.id.imgKitchenPixel);
 
-        Button
-                button = (Button) findViewById(R.id.btnLivingRoom),
-                btnPantry = (Button) findViewById(R.id.btnPantry);
+        Button button = (Button) findViewById(R.id.btnLivingRoom);
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }, 3500);
 
         //listener pantry button toast shows img and txt
-        btnPantry.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnPantry).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ImageView i = new ImageView(getApplicationContext());
