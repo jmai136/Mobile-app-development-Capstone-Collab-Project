@@ -42,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
         kitchen1.setVisibility(View.VISIBLE);
         kitchen2.setVisibility(View.INVISIBLE);
 
-        new Handler(getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler(getMainLooper()).postDelayed(r -> {
                 kitchen1.setVisibility(View.INVISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
-            }
-        }, 3500);
+            }, 3500);
 
         Button btnLivingRoom = (Button) findViewById(R.id.btnLivingRoom);
         btnLivingRoom.setVisibility(View.GONE);
