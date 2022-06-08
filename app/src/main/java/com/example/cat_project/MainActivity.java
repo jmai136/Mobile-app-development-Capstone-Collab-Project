@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 3500);
 
+        Button btnLivingRoom = (Button) findViewById(R.id.btnLivingRoom);
+        btnLivingRoom.setVisibility(View.GONE);
+
         //listener pantry button toast shows img and txt
         // fix icon, it's a bit too big
         findViewById(R.id.btnPantry).setOnClickListener(v -> {
-            Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show());
+            Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> btnLivingRoom.setVisibility(View.VISIBLE));
             TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
             snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
             snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnCounter).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener button takes player to battle.java
-        findViewById(R.id.btnLivingRoom).setOnClickListener(v -> {
+        btnLivingRoom.setOnClickListener(v -> {
             mpMusic.stop();
             Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", view ->  startActivity(new Intent(MainActivity.this, Battle.class))).show();
         });
