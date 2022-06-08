@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         kitchen1.setVisibility(View.VISIBLE);
         kitchen2.setVisibility(View.INVISIBLE);
 
-        new Handler(getMainLooper()).postDelayed(r -> {
+        new Handler(getMainLooper()).postDelayed(() -> {
                 kitchen1.setVisibility(View.INVISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
             }, 3500);
