@@ -306,9 +306,9 @@ public class Battle extends AppCompatActivity {
             this.DmgMax4 = 70;
 
             this.AtkTxt1 = "The killer plunges their knife into your soul. You feel a part of it leaving you.";
-            this.AtkTxt2 = "Insert text here.";
-            this.AtkTxt3 = "Insert text here.";
-            this.AtkTxt4 = "Insert text here.";
+            this.AtkTxt2 = "You feel a drain, your movement feels more sluggish, you could fall asleep here and now.";
+            this.AtkTxt3 = "The killer slashes, and you can imagine what your owner must have felt.";
+            this.AtkTxt4 = "The killer strikes from above, and unfortunately you can't hide your terror.";
             this.Missed = "The killer missed.";
         }
     }
