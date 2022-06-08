@@ -25,83 +25,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="25dp"
+        android:textAlignment="center"
         android:textColor="#1991D0"
-        tools:text="Timer goes here." />
+        android:textSize="50sp"
+        android:textStyle="bold"
+        tools:text="19"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btnLockIn"
         android:layout_width="wrap_content"
-        android:layout_height="59dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginRight="87dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginBottom="25dp"
         android:text="@string/btnLockIn"
         android:textSize="25sp"
-        android:visibility="visible"></Button>
+        android:visibility="invisible"></Button>
 
     <ImageView
         android:id="@+id/killer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="422dp"
+        android:layout_height="603dp"
+        android:layout_marginStart="-65dp"
+        android:layout_marginTop="-20dp"
+
         android:visibility="invisible"
         app:srcCompat="@drawable/killer" />
 
-
-    <ImageView
-        android:id="@+id/rat1"
-        android:layout_width="220dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="-152dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/rat2" />
-
-    <ImageView
-        android:id="@+id/rat2"
-        android:layout_width="220dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="191dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="-1dp"
-        android:layout_marginBottom="3dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/rat4" />
-
-    <ImageView
-        android:id="@+id/ratDmg"
-        android:layout_width="220dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="157dp"
-        android:layout_marginBottom="-71dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/rat3" />
 
     <ImageView
         android:id="@+id/ratAlone"
@@ -111,11 +73,42 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="157dp"
-        android:layout_marginBottom="-71dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-71dp"
+        android:layout_marginBottom="163dp"
         android:visibility="invisible"
         app:srcCompat="@drawable/rat1" />
+
+    <ImageView
+        android:id="@+id/rat1"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="-55dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="-60dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/rat4" />
+
+    <ImageView
+        android:id="@+id/rat2"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="0dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/rat2" />
 
     <ImageView
         android:id="@+id/body"
@@ -126,16 +119,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="279dp"
-        android:layout_marginEnd="-24dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="45dp"
         android:layout_marginBottom="10dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:srcCompat="@drawable/body" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
-        android:layout_height="307dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -143,20 +136,20 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginRight="95dp"
-        android:background="@color/white"
-        android:visibility="visible">
+        android:layout_marginStart="175dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/round_outline"
+        android:visibility="invisible">
 
         <RadioButton
             android:id="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/atk1"
             android:textSize="20sp" />
 
@@ -164,8 +157,8 @@
             android:id="@+id/two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/atk2"
             android:textSize="20sp" />
 
@@ -173,8 +166,8 @@
             android:id="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/atk3"
             android:textSize="20sp" />
 
@@ -182,8 +175,8 @@
             android:id="@+id/four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/atk4"
             android:textSize="20sp" />
     </RadioGroup>

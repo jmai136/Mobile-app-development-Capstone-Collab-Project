@@ -8,6 +8,7 @@ import android.icu.util.TimeUnit;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +61,24 @@ public class Battle extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
+        new Handler(getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Snackbar snackbar = Snackbar
+                        .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Battle", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                body.setVisibility(View.INVISIBLE);
+                                ratAlone.setVisibility(View.VISIBLE);
+                                rat1.setVisibility(View.VISIBLE);
+                                rat2.setVisibility(View.VISIBLE);
+                            }
+                        });
+                snackbar.show();
+            }
+        }, 2000);
+
         //music
         mpMusic = new MediaPlayer();
         mpMusic = MediaPlayer.create(this, R.raw.music);
@@ -106,18 +125,23 @@ public class Battle extends AppCompatActivity {
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> start());
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (cat.getIsDead())
+                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v -> finish()).show();
+                        else if (Subclass.getIsDead()) {
+                            phases = phases.next();
+                            // doesn't return, wonder why
+                            return;
+                        }
+                        else
+                            start();
+                    }
+                });
                 TextView snackTextView = (TextView) attacks .getView().findViewById(com.google.android.material.R.id.snackbar_text);
                 snackTextView.setMaxLines(99);
                 attacks.show();
-
-                if (cat.getIsDead())
-                    Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", view -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
-
-                if (Subclass.getIsDead()) {
-                    phases.next();
-                    return;
-                }
             }
         }.start();
     }
