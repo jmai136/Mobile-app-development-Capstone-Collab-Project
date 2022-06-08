@@ -59,22 +59,17 @@ public class Battle extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
-       new Handler(getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
+       new Handler(getMainLooper()).postDelayed(() -> {
                 Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Battle", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                        .setAction("Battle", view -> {
                                 body.setVisibility(View.INVISIBLE);
                                 ratAlone.setVisibility(View.VISIBLE);
                                 rat1.setVisibility(View.VISIBLE);
                                 rat2.setVisibility(View.VISIBLE);
                             }
-                        }).show();
-            }
-        }, 2000);
+                        ).show();
+       }, 2000);
 
         //music
         mpMusic = new MediaPlayer();
