@@ -93,10 +93,10 @@ public class Battle extends AppCompatActivity {
     {
         switch (phases) {
             case PHASE_ONE:
-                battle(20000, new Mouse(100, 150));
+                battle(20000, new Mouse());
                 break;
             case PHASE_TWO:
-                battle(15000, new Mice(150, 200));
+                battle(15000, new Mice());
                 break;
             case PHASE_THREE:
                 battle(10000, new Killer());
@@ -260,8 +260,8 @@ public class Battle extends AppCompatActivity {
     }
 
     public class Mouse extends Character {
-        public Mouse(int minHP, int maxHP) {
-            this.HP = rng.nextInt((maxHP - minHP) + minHP);
+        public Mouse() {
+            this.HP = rng.nextInt((150 - 100) + 100);
             this.DmgMin1 = 2;
             this.DmgMin2 = 4;
             this.DmgMin3 = 7;
@@ -281,8 +281,8 @@ public class Battle extends AppCompatActivity {
     }
 
     public class Mice extends Character {
-        public Mice(int minHP, int maxHP) {
-            this.HP = rng.nextInt((maxHP - minHP) + minHP);
+        public Mice() {
+            this.HP = rng.nextInt((200 - 100) + 100);
             this.DmgMin1 = 4;
             this.DmgMin2 = 8;
             this.DmgMin3 = 14;
