@@ -50,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
         }, 3500);
 
         //listener pantry button toast shows img and txt
+        // fix icon, it's a bit too big
         findViewById(R.id.btnPantry).setOnClickListener(v -> {
             Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show());
             TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
             snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
             snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+            snackTextView.setMaxLines(99);
             pantry.show();
             });
 
