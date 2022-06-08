@@ -106,7 +106,7 @@ public class Battle extends AppCompatActivity {
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> start());
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close",  v -> start());
                 TextView snackTextView = (TextView) attacks .getView().findViewById(com.google.android.material.R.id.snackbar_text);
                 snackTextView.setMaxLines(99);
                 attacks.show();
