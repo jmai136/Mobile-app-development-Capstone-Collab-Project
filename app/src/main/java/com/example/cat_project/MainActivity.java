@@ -5,21 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     //global variables for music
@@ -56,21 +50,13 @@ public class MainActivity extends AppCompatActivity {
         }, 3500);
 
         //listener pantry button toast shows img and txt
-        findViewById(R.id.btnPantry).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
-                    }
-                });
-                TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-                snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
-                snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-                pantry.show();
-                }
-        });
+        findViewById(R.id.btnPantry).setOnClickListener(v -> {
+            Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show());
+            TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
+            snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+            pantry.show();
+            });
 
         //listener trash can shows toast notification
         findViewById(R.id.btnTrash).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
@@ -79,12 +65,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnCounter).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener button takes player to battle.java
-        findViewById(R.id.btnLivingRoom).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mpMusic.stop();
-                Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", view ->  startActivity(new Intent(MainActivity.this, Battle.class))).show();
-            }
+        findViewById(R.id.btnLivingRoom).setOnClickListener(v -> {
+            mpMusic.stop();
+            Snackbar.make(relativeLayout, "You sense something wrong, it's imperative to go here.", Snackbar.LENGTH_INDEFINITE).setAction("Close", view ->  startActivity(new Intent(MainActivity.this, Battle.class))).show();
         });
     }
 }
