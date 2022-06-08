@@ -34,11 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ImageView imageView = (ImageView) findViewById(R.id.imgKitchenPixel);
 
-        Button
-                button = (Button) findViewById(R.id.btnLivingRoom),
-                btnPantry = (Button) findViewById(R.id.btnPantry),
-                btnTrash = (Button) findViewById(R.id.btnTrash),
-                btnCounter = (Button) findViewById(R.id.btnCounter);
+        Button btnPantry = (Button) findViewById(R.id.btnPantry);
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
@@ -78,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //listener trash can shows toast notification
-        btnTrash.setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
+        findViewById(R.id.btnTrash).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the trash can. It doesn't smell like there is anything good to eat in there.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener counter shows toast notification
-        btnCounter.setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
+        findViewById(R.id.btnCounter).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener button takes player to battle.java
-        button.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnLivingRoom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mpMusic.stop();
