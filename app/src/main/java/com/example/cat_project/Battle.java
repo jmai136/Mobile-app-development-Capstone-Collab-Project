@@ -62,10 +62,10 @@ public class Battle extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
-        new Handler(getMainLooper()).postDelayed(new Runnable() {
+       new Handler(getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Snackbar snackbar = Snackbar
+                Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
                         .setAction("Battle", new View.OnClickListener() {
                             @Override
@@ -75,8 +75,7 @@ public class Battle extends AppCompatActivity {
                                 rat1.setVisibility(View.VISIBLE);
                                 rat2.setVisibility(View.VISIBLE);
                             }
-                        });
-                snackbar.show();
+                        }).show();
             }
         }, 2000);
 
