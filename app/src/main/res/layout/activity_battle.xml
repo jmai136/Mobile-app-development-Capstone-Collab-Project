@@ -141,8 +141,10 @@
         android:layout_marginTop="140dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:background="@drawable/round_outline"
         android:visibility="invisible">
+
+        <!-- upload the round out line xml -!>
+        <!- android:background="@drawable/round_outline" -->
 
         <RadioButton
             android:id="@+id/one"
