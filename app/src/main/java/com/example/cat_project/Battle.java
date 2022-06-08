@@ -305,7 +305,7 @@ public class Battle extends AppCompatActivity {
             this.DmgMax3 = 40;
             this.DmgMax4 = 70;
 
-            this.AtkTxt1 = "Insert text here.";
+            this.AtkTxt1 = "The killer plunges their knife into your soul. You feel a part of it leaving you.";
             this.AtkTxt2 = "Insert text here.";
             this.AtkTxt3 = "Insert text here.";
             this.AtkTxt4 = "Insert text here.";
