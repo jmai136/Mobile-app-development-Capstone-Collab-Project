@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity {
     //global variables for music
     MediaPlayer mpMusic;
 
-    private final TextView
-            kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
-            kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         mpMusic = MediaPlayer.create(this, R.raw.music);
         mpMusic.setLooping(true);
         mpMusic.start();
+
+        final TextView
+                kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
+                kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
 
         // if possible, replace with handler later
         kitchen1.setVisibility(View.VISIBLE);
