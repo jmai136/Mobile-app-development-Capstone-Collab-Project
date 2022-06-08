@@ -33,21 +33,5 @@ public class BadEnding extends AppCompatActivity {
                 snackbar.show();
             }
         }, 3500);
-
-        /*final TextView ending = (TextView) findViewById(R.id.bEnding);
-        Button btnCon = (Button) findViewById(R.id.btnCon);
-
-        ending.setVisibility(View.INVISIBLE);
-        btnCon.setVisibility(View.INVISIBLE);
-
-        new Handler(getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ending.setVisibility(View.VISIBLE);
-                btnCon.setVisibility(View.VISIBLE);
-            }
-        }, 3500);
-
-        btnCon.setOnClickListener(view -> startActivity(new Intent(BadEnding.this, Credits.class)));*/
     }
 }

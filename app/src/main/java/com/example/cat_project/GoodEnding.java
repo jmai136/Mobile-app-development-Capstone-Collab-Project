@@ -34,24 +34,5 @@ public class GoodEnding extends AppCompatActivity {
                 snackbar.show();
             }
         }, 3500);
-
-        // new Handler(getMainLooper()).postDelayed(() -> Snackbar.make(findViewById(R.id.RelativeLayout), "You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...", Snackbar.LENGTH_INDEFINITE).setAction("Credits", view -> startActivity(new Intent(GoodEnding.this, Credits.class))).show(),3500);
-
-        /*final TextView ending = (TextView) findViewById(R.id.gEnding);
-        Button btnCon = (Button) findViewById(R.id.btnCon);
-
-        ending.setVisibility(View.INVISIBLE);
-        btnCon.setVisibility(View.INVISIBLE);
-
-        new Handler(getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ending.setVisibility(View.VISIBLE);
-                btnCon.setVisibility(View.VISIBLE);
-            }
-        }, 3500);
-
-        //listener button takes player to credits.java
-        btnCon.setOnClickListener(view -> startActivity(new Intent(GoodEnding.this, Credits.class)));*/
     }
 }
