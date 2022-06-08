@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ImageView imageView = (ImageView) findViewById(R.id.imgKitchenPixel);
 
-        Button button = (Button) findViewById(R.id.btnLivingRoom);
-
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
         //music
@@ -60,16 +58,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnPantry).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView i = new ImageView(getApplicationContext());
-                i.setImageResource(R.drawable.pantrydoorpixel);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(i);
-                toast.show();
-                Toast.makeText(MainActivity.this, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...", Toast.LENGTH_LONG).show();
-
-                button.setVisibility(View.INVISIBLE);
-                new Handler(getMainLooper()).postDelayed(() -> button.setVisibility(View.VISIBLE), 3500);
+                Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show();
+                    }
+                });
+                TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+                snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
+                pantry.show();
                 }
         });
 
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnCounter).setOnClickListener(view -> Snackbar.make(relativeLayout, "It's the counter. You don't see any food up there, so you don't bother jumping up.", Snackbar.LENGTH_INDEFINITE).setAction("Close", v-> Toast.makeText(MainActivity.this, "Refocusing..", Toast.LENGTH_LONG).show()).show());
 
         //listener button takes player to battle.java
-        button.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnLivingRoom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mpMusic.stop();
