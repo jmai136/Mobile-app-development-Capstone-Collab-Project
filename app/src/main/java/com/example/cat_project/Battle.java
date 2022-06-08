@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.util.TimeUnit;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -47,7 +45,6 @@ public class Battle extends AppCompatActivity {
         };
 
         public Phases next() {
-            // No bounds checking required here, because the last instance overrides
             return values()[ordinal() + 1];
         }
     }
@@ -109,7 +106,7 @@ public class Battle extends AppCompatActivity {
 
     private void battle(long countdownTimerDuration, Character Subclass) {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
-        TextView txtTimer = findViewById(R.id.txtTimer);;
+        TextView txtTimer = findViewById(R.id.txtTimer);
         Button btnLockIn = findViewById(R.id.btnLockIn);
 
         new CountDownTimer(countdownTimerDuration, 1000) {
