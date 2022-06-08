@@ -120,7 +120,7 @@ public class Battle extends AppCompatActivity {
             @Override
             public void onFinish() {
                 cancel();
-                txtTimer.setText("");
+                txtTimer.setVisibility(View.GONE);
                 btnLockIn.setVisibility(View.GONE);
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
