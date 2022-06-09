@@ -311,7 +311,9 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
             this.Missed = "The mice missed.";
 
+            this.enemy = findViewById(R.id.ratAlone);
             this.enemy = findViewById(R.id.rat1);
+            this.enemy = findViewById(R.id.rat2);
             enemy.setVisibility(View.VISIBLE);
         }
     }
