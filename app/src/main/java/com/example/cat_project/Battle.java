@@ -107,6 +107,7 @@ public class Battle extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 radioGroup.setVisibility(View.VISIBLE);
 
+                txtTimer.setVisibility(View.VISIBLE);
                 txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) millisUntilFinished / 1000 % 60));
 
                 btnLockIn.setVisibility(View.VISIBLE);
@@ -123,7 +124,7 @@ public class Battle extends AppCompatActivity {
 
                 radioGroup.setVisibility(View.GONE);
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.getHP() + " Enemy: " + Subclass.getHP(),  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
                     {
                         if (cat.getIsDead())
                             Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
@@ -171,18 +172,30 @@ public class Battle extends AppCompatActivity {
 
     // superclass
     private static class Character {
-        protected Random rng = new Random();
-
-        protected int HP,
+        protected int
                 DmgMin1, DmgMin2, DmgMin3, DmgMin4,
                 DmgMax1, DmgMax2, DmgMax3, DmgMax4;
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
         protected Pair<Integer, String> DmgAndTxtValues;
 
+        private int HP, MaxHP;
+
         protected ImageView enemy;
 
         protected Pair<Integer, String> getBattleOptionResults(int choice) {
             return DmgAndTxtValues = setBattleOption(choice);
+        }
+
+        public int getHP() {
+            return HP;
+        }
+
+        protected int setHP(int minHP, int maxHP) {
+            return HP = (int) Math.floor(Math.random()*(maxHP - minHP + 1) + minHP);
+        }
+
+        private int setDamage(int minDmg, int maxDmg) {
+            return (int) Math.floor(Math.random()*(maxDmg - minDmg +1) + minDmg);
         }
 
         protected int getDamageVal() {
@@ -200,19 +213,19 @@ public class Battle extends AppCompatActivity {
             // https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
             switch (choice) {
                 case 0:
-                    dmg = (int) Math.floor(Math.random()*(DmgMax1 - DmgMin1 +1) + DmgMin1);
+                    dmg = setDamage(DmgMin1, DmgMax1);
                     atkTxt = AtkTxt1;
                     break;
                 case 1:
-                    dmg = (int) Math.floor(Math.random()*(DmgMax2 - DmgMin2 + 1) + DmgMin2);
+                    dmg = setDamage(DmgMin2, DmgMax2);
                     atkTxt = AtkTxt2;
                     break;
                 case 2:
-                    dmg = (int) Math.floor(Math.random()*(DmgMax3 - DmgMin3  + 1) + DmgMin3);
+                    dmg = setDamage(DmgMin3, DmgMax3);
                     atkTxt = AtkTxt3;
                     break;
                 case 3:
-                    dmg = (int) Math.floor(Math.random()*(DmgMax4 - DmgMin4  + 1) + DmgMin4);
+                    dmg = setDamage(DmgMin4, DmgMax4);
                     atkTxt = AtkTxt4;
                     break;
                 default:
@@ -229,12 +242,20 @@ public class Battle extends AppCompatActivity {
         protected boolean getIsDead() { return (HP <= 0);}
 
         protected void clearImage() { enemy.setImageResource(0);}
+
+        // utility method: http://www.java2s.com/example/java-utility-method/integer-clamp/clamp-final-int-min-final-int-x-final-int-max-41c25.html
+        private static int clamp(final int min, final int x, final int max) {
+            if (max < min) {
+                throw new IllegalArgumentException("Max is less than min");
+            }
+            return Math.max(min, Math.min(max, x));
+        }
     }
 
     // inner classes
     public static class Cat extends Character {
         public Cat() {
-            this.HP = (int) Math.floor(Math.random()*(500 - 300  + 1) + 300);
+            this.setHP(300, 500);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
@@ -255,7 +276,7 @@ public class Battle extends AppCompatActivity {
 
     public class Mouse extends Character {
         public Mouse() {
-            this.HP = (int) Math.floor(Math.random()*(150 - 100  + 1) + 100);
+            this.setHP(10, 15);
             this.DmgMin1 = 2;
             this.DmgMin2 = 4;
             this.DmgMin3 = 7;
@@ -279,7 +300,7 @@ public class Battle extends AppCompatActivity {
 
     public class Mice extends Character {
         public Mice() {
-            this.HP = (int) Math.floor(Math.random()*(200 - 100 + 1) + 100);
+            this.setHP(30, 60);
             this.DmgMin1 = 4;
             this.DmgMin2 = 8;
             this.DmgMin3 = 14;
@@ -303,7 +324,7 @@ public class Battle extends AppCompatActivity {
 
     public class Killer extends Character {
         public Killer() {
-            this.HP = rng.nextInt((500 - 250)  + 1) + 250;
+            this.setHP(80, 100);
             this.DmgMin1 = 12;
             this.DmgMin2 = 14;
             this.DmgMin3 = 7;
