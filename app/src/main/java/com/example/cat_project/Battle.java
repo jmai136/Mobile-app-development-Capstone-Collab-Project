@@ -135,6 +135,8 @@ public class Battle extends AppCompatActivity {
                         if (cat.getIsDead())
                             Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
                         else if (Subclass.getIsDead()) {
+                            Subclass.clearImage();
+
                             phases = phases.next();
                             setPhases();
                         }
@@ -176,7 +178,7 @@ public class Battle extends AppCompatActivity {
     }
 
     // superclass
-    private class Character {
+    private static class Character {
         protected Random rng = new Random();
 
         protected int HP,
@@ -236,6 +238,8 @@ public class Battle extends AppCompatActivity {
         protected boolean getIsDead() {
             return (HP <= 0);
         }
+
+        protected void clearImage() { enemy.setImageResource(0);}
     }
 
     // inner classes
