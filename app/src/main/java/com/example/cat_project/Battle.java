@@ -51,7 +51,6 @@ public class Battle extends AppCompatActivity {
 
     final private Cat cat = new Cat();
     private Phases phases;
-    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,26 +59,25 @@ public class Battle extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
-       /*new Handler(getMainLooper()).postDelayed(() -> {
+       new Handler(getMainLooper()).postDelayed(() -> {
                 Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
                         .setAction("Battle", view -> {
-                                body.setVisibility(View.INVISIBLE);
+                                /*body.setVisibility(View.INVISIBLE);
                                 ratAlone.setVisibility(View.VISIBLE);
                                 rat1.setVisibility(View.VISIBLE);
-                                rat2.setVisibility(View.VISIBLE);
+                                rat2.setVisibility(View.VISIBLE);*/
+
+                                mpMusic = new MediaPlayer();
+                                mpMusic = MediaPlayer.create(this, R.raw.music);
+                                mpMusic.setLooping(true);
+                                mpMusic.start();
+
+                                phases = Phases.PHASE_ONE;
+                                setPhases();
                             }
                         ).show();
-       }, 2000);*/
-
-        //music
-        mpMusic = new MediaPlayer();
-        mpMusic = MediaPlayer.create(this, R.raw.music);
-        mpMusic.setLooping(true);
-        mpMusic.start();
-
-        phases = Phases.PHASE_ONE;
-        setPhases();
+       }, 2000);
     }
 
     private void setPhases()
