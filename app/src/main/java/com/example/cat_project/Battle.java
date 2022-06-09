@@ -222,13 +222,9 @@ public class Battle extends AppCompatActivity {
             return new Pair<>(dmg, atkTxt);
         }
 
-        protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) {
-            return HP -= Dmg.first;
-        }
+        protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) { return HP -= Dmg.first;}
 
-        protected boolean getIsDead() {
-            return (HP <= 0);
-        }
+        protected boolean getIsDead() { return (HP <= 0);}
 
         protected void clearImage() { enemy.setImageResource(0);}
     }
@@ -236,7 +232,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public static class Cat extends Character {
         public Cat() {
-            this.HP = rng.nextInt(((500- 300)  + 1) + 300);
+            this.HP = rng.nextInt(((500 - 300)  + 1) + 300);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
@@ -298,9 +294,7 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
             this.Missed = "The mice missed.";
 
-            this.enemy = findViewById(R.id.ratAlone);
-            this.enemy = findViewById(R.id.rat1);
-            this.enemy = findViewById(R.id.rat2);
+            this.enemy = findViewById(R.id.ratGroup);
             enemy.setVisibility(View.VISIBLE);
         }
     }
