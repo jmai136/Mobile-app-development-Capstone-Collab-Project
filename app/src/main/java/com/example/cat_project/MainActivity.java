@@ -38,14 +38,20 @@ public class MainActivity extends AppCompatActivity {
                 kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
                 kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
 
-        // if possible, replace with handler later
-        kitchen1.setVisibility(View.VISIBLE);
-        kitchen2.setVisibility(View.INVISIBLE);
-
-        new Handler(getMainLooper()).postDelayed(() -> {
-                kitchen1.setVisibility(View.INVISIBLE);
+        //show first text message; hide second message
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                kitchen1.setVisibility(View.VISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
-            }, 3500);
+            }
+        });
+
+        //show second text message on delay; hide first message
+        new Handler(getMainLooper()).postDelayed(() -> {
+            kitchen1.setVisibility(View.INVISIBLE);
+            kitchen2.setVisibility(View.VISIBLE);
+        }, 3500);
 
         Button btnLivingRoom = (Button) findViewById(R.id.btnLivingRoom);
         btnLivingRoom.setVisibility(View.GONE);
