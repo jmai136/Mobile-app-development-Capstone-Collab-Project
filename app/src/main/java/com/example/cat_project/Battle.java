@@ -124,7 +124,7 @@ public class Battle extends AppCompatActivity {
 
                 radioGroup.setVisibility(View.GONE);
 
-                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.getHP() + " Enemy: " + Subclass.getHP(),  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
+                Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP -" + cat.getName() + "You: " + cat.getHP() + " " + Subclass.getName() + ": " + Subclass.getHP(),  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
                     {
                         if (cat.getIsDead())
                             Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
@@ -172,8 +172,6 @@ public class Battle extends AppCompatActivity {
 
     // superclass
     private static class Character {
-        protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
-
         private int[] dmgMins, dmgMaxs;
         private String[] atkTxt;
 
@@ -187,11 +185,16 @@ public class Battle extends AppCompatActivity {
             return DmgAndTxtValues = setBattleOption(choice);
         }
 
+        public String getName() {
+            return atkTxt[0];
+        }
+
         public int getHP() {
             return HP;
         }
 
         protected int setHP(int minHP, int maxHP) {
+            MaxHP = maxHP;
             return HP = (int) Math.floor(Math.random()*(maxHP - minHP + 1) + minHP);
         }
 
@@ -207,6 +210,10 @@ public class Battle extends AppCompatActivity {
             return dmgMaxs = new int[]{dmgMax1, dmgMax2, dmgMax3, dmgMax4};
         }
 
+        protected String[] setAtkTxt(String name, String atkTxt1, String atkTxt2, String atkTxt3, String atkTxt4) {
+            return atkTxt = new String[]{name, atkTxt1, atkTxt2, atkTxt3, atkTxt4, name + " missed."};
+        }
+
         protected int getDamageVal() {
             return DmgAndTxtValues.first;
         }
@@ -216,34 +223,33 @@ public class Battle extends AppCompatActivity {
         }
 
         protected Pair<Integer, String> setBattleOption(int choice) {
-            int dmg;
-            String atkTxt;
+            int finDmg = 0;
+            String finalAtkTxt;
 
             // https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
             switch (choice) {
                 case 0:
-                    dmg = setDamage(dmgMins[0], dmgMaxs[0]);
-                    atkTxt = AtkTxt1;
+                    finDmg = setDamage(dmgMins[0], dmgMaxs[0]);
+                    finalAtkTxt = atkTxt[1];
                     break;
                 case 1:
-                    dmg = setDamage(dmgMins[1], dmgMaxs[1]);
-                    atkTxt = AtkTxt2;
+                    finDmg = setDamage(dmgMins[1], dmgMaxs[1]);
+                    finalAtkTxt = atkTxt[2];
                     break;
                 case 2:
-                    dmg = setDamage(dmgMins[2], dmgMaxs[2]);
-                    atkTxt = AtkTxt3;
+                    finDmg = setDamage(dmgMins[2], dmgMaxs[2]);
+                    finalAtkTxt = atkTxt[3];
                     break;
                 case 3:
-                    dmg = setDamage(dmgMins[3], dmgMaxs[3]);
-                    atkTxt = AtkTxt4;
+                    finDmg = setDamage(dmgMins[3], dmgMaxs[3]);
+                    finalAtkTxt = atkTxt[4];
                     break;
                 default:
-                    dmg = 0;
-                    atkTxt = Missed;
+                    finalAtkTxt = atkTxt[5];
                     break;
             }
 
-            return new Pair<>(dmg, atkTxt);
+            return new Pair<>(finDmg, finalAtkTxt);
         }
 
         protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) { return HP -= Dmg.first;}
@@ -267,12 +273,12 @@ public class Battle extends AppCompatActivity {
             this.setHP(300, 500);
             this.setDmgMin(9, 8, 9, 2);
             this.setDmgMax(15, 10, 12, 20);
-
-            this.AtkTxt1 = "You raise your mighty claws into the air and swipe down.";
-            this.AtkTxt2 = "You pounce towards the mouse, ready to bite if you get the chance.";
-            this.AtkTxt3 = "You concentrate and hit them all in one quick swipe!";
-            this.AtkTxt4 = "You hiss at the mouse to let him know who is boss";
-            this.Missed = "You missed";
+            this.setAtkTxt(
+                    "You",
+                    "You raise your mighty claws into the air and swipe down.",
+                    "You pounce towards the mouse, ready to bite if you get the chance.",
+                    "You concentrate and hit them all in one quick swipe!",
+                    "You hiss at the mouse to let him know who is boss");
         }
     }
 
@@ -281,12 +287,12 @@ public class Battle extends AppCompatActivity {
             this.setHP(10, 15);
             this.setDmgMin(2, 4, 7, 7);
             this.setDmgMax(18, 12, 14, 15);
-
-            this.AtkTxt1 = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
-            this.AtkTxt2 = "The mouse discovered a bunch of toothpicks. He is looking around.";
-            this.AtkTxt3 = "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!";
-            this.AtkTxt4 = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
-            this.Missed = "The mice missed.";
+            this.setAtkTxt(
+                    "Mouse",
+                    "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.",
+                    "The mouse discovered a bunch of toothpicks. He is looking around.",
+                    "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!",
+                    "They have you surrounded. Toothpicks everywhere. Is this how it ends?");
 
             this.enemy = findViewById(R.id.ratAlone);
             enemy.setVisibility(View.VISIBLE);
@@ -298,12 +304,12 @@ public class Battle extends AppCompatActivity {
             this.setHP(30, 60);
             this.setDmgMin(4, 8, 10, 12);
             this.setDmgMax(36, 24, 28, 30);
-
-            this.AtkTxt1 = "The mice all gang up on you, you feel your skin crawling.";
-            this.AtkTxt2 = "The mice all decide to claw at your eyes, it hurts to some degree.";
-            this.AtkTxt3 = "The mice are merciless, deciding to kick you swiftly while surrounding.";
-            this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
-            this.Missed = "The mice missed.";
+            this.setAtkTxt(
+                    "Mice",
+                    "The mice all gang up on you, you feel your skin crawling.",
+                    "The mice all decide to claw at your eyes, it hurts to some degree.",
+                    "The mice are merciless, deciding to kick you swiftly while surrounding.",
+                    "They truly are a pair, backing you into a corner.");
 
             this.enemy = findViewById(R.id.ratGroup);
             enemy.setVisibility(View.VISIBLE);
@@ -315,12 +321,12 @@ public class Battle extends AppCompatActivity {
             this.setHP(80, 100);
             this.setDmgMin(12, 14, 7, 6);
             this.setDmgMax(40, 50, 40, 70);
-
-            this.AtkTxt1 = "The killer plunges their knife into your soul. You feel a part of it leaving you.";
-            this.AtkTxt2 = "You feel a drain, your movement feels more sluggish, you could fall asleep here and now.";
-            this.AtkTxt3 = "The killer slashes, and you can imagine what your owner must have felt.";
-            this.AtkTxt4 = "The killer strikes from above, and unfortunately you can't hide your terror.";
-            this.Missed = "The killer missed.";
+            this.setAtkTxt(
+                    "Killer",
+                    "The killer plunges their knife into your soul. You feel a part of it leaving you.",
+                    "You feel a drain, your movement feels more sluggish, you could fall asleep here and now.",
+                    "The killer slashes, and you can imagine what your owner must have felt.",
+                    "The killer strikes from above, and unfortunately you can't hide your terror.");
 
             this.enemy = findViewById(R.id.killer);
             enemy.setVisibility(View.VISIBLE);
