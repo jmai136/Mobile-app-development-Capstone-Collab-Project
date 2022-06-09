@@ -252,10 +252,10 @@ public class Battle extends AppCompatActivity {
             this.DmgMax3 = 12;
             this.DmgMax4 = 20;
 
-            this.AtkTxt1 = "You hiss at the mouse to let him know who is boss";
+            this.AtkTxt1 = "You raise your mighty claws into the air and swipe down.";
             this.AtkTxt2 = "You pounce towards the mouse, ready to bite if you get the chance.";
-            this.AtkTxt3 = "You raise your mighty claws into the air and swipe down.";
-            this.AtkTxt4 = "You concentrate and hit them all in one quick swipe!";
+            this.AtkTxt3 = "You concentrate and hit them all in one quick swipe!";
+            this.AtkTxt4 = "You hiss at the mouse to let him know who is boss";
             this.Missed = "You missed";
         }
     }
