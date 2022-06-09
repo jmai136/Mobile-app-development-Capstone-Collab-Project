@@ -192,7 +192,7 @@ public class Battle extends AppCompatActivity {
         }
 
         protected int setHP(int minHP, int maxHP) {
-            MaxHP = (int) Math.floor(Math.random()*(maxHP - minHP + 1) + minHP)
+            MaxHP = (int) Math.floor(Math.random()*(maxHP - minHP + 1) + minHP);
             return HP  = MaxHP;
         }
 
