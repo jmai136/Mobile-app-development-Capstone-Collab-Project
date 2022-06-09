@@ -126,7 +126,7 @@ public class Battle extends AppCompatActivity {
                 btnLockIn.setVisibility(View.GONE);
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
-                Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
+                Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID(radioGroup)));
 
                 radioGroup.setVisibility(View.GONE);
 
@@ -152,9 +152,8 @@ public class Battle extends AppCompatActivity {
     }
 
     // grab the radio id the player clicked on
-    private int getRadioID() {
+    private int getRadioID(RadioGroup radioGroup) {
         int choice = 4;
-        RadioGroup radioGroup = findViewById(R.id.radioGroup);
         switch(radioGroup.getCheckedRadioButtonId()) {
             case R.id.one:
                 choice = 0;
