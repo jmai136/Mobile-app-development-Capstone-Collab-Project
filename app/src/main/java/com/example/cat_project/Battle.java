@@ -197,21 +197,22 @@ public class Battle extends AppCompatActivity {
             int dmg;
             String atkTxt;
 
+            // https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
             switch (choice) {
                 case 0:
-                    dmg = rng.nextInt(((DmgMax1 - DmgMin1)  + 1) + DmgMin1);
+                    dmg = (int) Math.floor(Math.random()*(DmgMax1 - DmgMin1 +1) + DmgMin1);
                     atkTxt = AtkTxt1;
                     break;
                 case 1:
-                    dmg = rng.nextInt(((DmgMax2 - DmgMin2) + 1) + DmgMin2);
+                    dmg = (int) Math.floor(Math.random()*(DmgMax2 - DmgMin2 + 1) + DmgMin2);
                     atkTxt = AtkTxt2;
                     break;
                 case 2:
-                    dmg = rng.nextInt(((DmgMax3 - DmgMin3)  + 1) + DmgMin3);
+                    dmg = (int) Math.floor(Math.random()*(DmgMax3 - DmgMin3  + 1) + DmgMin3);
                     atkTxt = AtkTxt3;
                     break;
                 case 3:
-                    dmg = rng.nextInt(((DmgMax4 - DmgMin4)  + 1) + DmgMin4);
+                    dmg = (int) Math.floor(Math.random()*(DmgMax4 - DmgMin4  + 1) + DmgMin4);
                     atkTxt = AtkTxt4;
                     break;
                 default:
@@ -241,7 +242,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public static class Cat extends Character {
         public Cat() {
-            this.HP = rng.nextInt(((500 - 300)  + 1) + 300);
+            this.HP = (int) Math.floor(Math.random()*(500 - 300  + 1) + 300);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
@@ -262,7 +263,7 @@ public class Battle extends AppCompatActivity {
 
     public class Mouse extends Character {
         public Mouse() {
-            this.HP = rng.nextInt(((150 - 100)  + 1) + 100);
+            this.HP = (int) Math.floor(Math.random()*(150 - 100  + 1) + 100);
             this.DmgMin1 = 2;
             this.DmgMin2 = 4;
             this.DmgMin3 = 7;
@@ -286,7 +287,7 @@ public class Battle extends AppCompatActivity {
 
     public class Mice extends Character {
         public Mice() {
-            this.HP = rng.nextInt(((200 - 100)  + 1) + 100);
+            this.HP = (int) Math.floor(Math.random()*(200 - 100 + 1) + 100);
             this.DmgMin1 = 4;
             this.DmgMin2 = 8;
             this.DmgMin3 = 14;
