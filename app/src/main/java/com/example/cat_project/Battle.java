@@ -24,13 +24,13 @@ import java.util.Random;
 public class Battle extends AppCompatActivity {
     private MediaPlayer mpMusic;
 
-    ImageView body = (ImageView) findViewById(R.id.body);
+    /*ImageView body = (ImageView) findViewById(R.id.body);
 
     final ImageView
             rat1 = (ImageView) findViewById(R.id.rat1),
             rat2 = (ImageView) findViewById(R.id.rat2),
             ratAlone = (ImageView) findViewById(R.id.ratAlone),
-            killer = (ImageView) findViewById(R.id.killer);
+            killer = (ImageView) findViewById(R.id.killer);*/
 
     // gotta fix the enumeraton
     private enum Phases {
@@ -59,7 +59,7 @@ public class Battle extends AppCompatActivity {
 
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
-       new Handler(getMainLooper()).postDelayed(() -> {
+       /*new Handler(getMainLooper()).postDelayed(() -> {
                 Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
                         .setAction("Battle", view -> {
@@ -69,7 +69,7 @@ public class Battle extends AppCompatActivity {
                                 rat2.setVisibility(View.VISIBLE);
                             }
                         ).show();
-       }, 2000);
+       }, 2000);*/
 
         //music
         mpMusic = new MediaPlayer();
