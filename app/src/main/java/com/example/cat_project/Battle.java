@@ -172,14 +172,12 @@ public class Battle extends AppCompatActivity {
 
     // superclass
     private static class Character {
+
         private int[] dmgMins, dmgMaxs;
         private String[] atkTxt;
-
-        protected Pair<Integer, String> DmgAndTxtValues;
-
         private int HP, MaxHP;
-
-        protected ImageView enemy;
+        private ImageView enemy;
+        private Pair<Integer, String> DmgAndTxtValues;
 
         protected Pair<Integer, String> getBattleOptionResults(int choice) {
             return DmgAndTxtValues = setBattleOption(choice);
@@ -256,6 +254,10 @@ public class Battle extends AppCompatActivity {
 
         protected boolean getIsDead() { return (HP <= 0);}
 
+        protected void setImage(ImageView source) {
+            enemy = source;
+            enemy.setVisibility(View.VISIBLE);
+        }
         protected void clearImage() { enemy.setImageResource(0);}
 
         // utility method: http://www.java2s.com/example/java-utility-method/integer-clamp/clamp-final-int-min-final-int-x-final-int-max-41c25.html
@@ -294,8 +296,7 @@ public class Battle extends AppCompatActivity {
                     "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!",
                     "They have you surrounded. Toothpicks everywhere. Is this how it ends?");
 
-            this.enemy = findViewById(R.id.ratAlone);
-            enemy.setVisibility(View.VISIBLE);
+            this.setImage(findViewById(R.id.ratAlone));
         }
     }
 
@@ -311,8 +312,7 @@ public class Battle extends AppCompatActivity {
                     "The mice are merciless, deciding to kick you swiftly while surrounding.",
                     "They truly are a pair, backing you into a corner.");
 
-            this.enemy = findViewById(R.id.ratGroup);
-            enemy.setVisibility(View.VISIBLE);
+            this.setImage(findViewById(R.id.ratGroup));
         }
     }
 
@@ -328,8 +328,7 @@ public class Battle extends AppCompatActivity {
                     "The killer slashes, and you can imagine what your owner must have felt.",
                     "The killer strikes from above, and unfortunately you can't hide your terror.");
 
-            this.enemy = findViewById(R.id.killer);
-            enemy.setVisibility(View.VISIBLE);
+            this.setImage(findViewById(R.id.killer));
         }
     }
 }
