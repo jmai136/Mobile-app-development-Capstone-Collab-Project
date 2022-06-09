@@ -172,10 +172,11 @@ public class Battle extends AppCompatActivity {
 
     // superclass
     private static class Character {
-        protected int
-                DmgMin1, DmgMin2, DmgMin3, DmgMin4,
-                DmgMax1, DmgMax2, DmgMax3, DmgMax4;
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
+
+        private int[] dmgMins, dmgMaxs;
+        private String[] atkTxt;
+
         protected Pair<Integer, String> DmgAndTxtValues;
 
         private int HP, MaxHP;
@@ -198,6 +199,14 @@ public class Battle extends AppCompatActivity {
             return (int) Math.floor(Math.random()*(maxDmg - minDmg +1) + minDmg);
         }
 
+        protected int[] setDmgMin(int dmgMin1, int dmgMin2, int dmgMin3, int dmgMin4) {
+            return dmgMins = new int[]{dmgMin1, dmgMin2, dmgMin3, dmgMin4};
+        }
+
+        protected int[] setDmgMax(int dmgMax1, int dmgMax2, int dmgMax3, int dmgMax4) {
+            return dmgMaxs = new int[]{dmgMax1, dmgMax2, dmgMax3, dmgMax4};
+        }
+
         protected int getDamageVal() {
             return DmgAndTxtValues.first;
         }
@@ -213,19 +222,19 @@ public class Battle extends AppCompatActivity {
             // https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
             switch (choice) {
                 case 0:
-                    dmg = setDamage(DmgMin1, DmgMax1);
+                    dmg = setDamage(dmgMins[0], dmgMaxs[0]);
                     atkTxt = AtkTxt1;
                     break;
                 case 1:
-                    dmg = setDamage(DmgMin2, DmgMax2);
+                    dmg = setDamage(dmgMins[1], dmgMaxs[1]);
                     atkTxt = AtkTxt2;
                     break;
                 case 2:
-                    dmg = setDamage(DmgMin3, DmgMax3);
+                    dmg = setDamage(dmgMins[2], dmgMaxs[2]);
                     atkTxt = AtkTxt3;
                     break;
                 case 3:
-                    dmg = setDamage(DmgMin4, DmgMax4);
+                    dmg = setDamage(dmgMins[3], dmgMaxs[3]);
                     atkTxt = AtkTxt4;
                     break;
                 default:
@@ -256,15 +265,8 @@ public class Battle extends AppCompatActivity {
     public static class Cat extends Character {
         public Cat() {
             this.setHP(300, 500);
-            this.DmgMin1 = 9;
-            this.DmgMin2 = 8;
-            this.DmgMin3 = 9;
-            this.DmgMin4 = 2;
-
-            this.DmgMax1 = 15;
-            this.DmgMax2 = 10;
-            this.DmgMax3 = 12;
-            this.DmgMax4 = 20;
+            this.setDmgMin(9, 8, 9, 2);
+            this.setDmgMax(15, 10, 12, 20);
 
             this.AtkTxt1 = "You raise your mighty claws into the air and swipe down.";
             this.AtkTxt2 = "You pounce towards the mouse, ready to bite if you get the chance.";
@@ -277,15 +279,8 @@ public class Battle extends AppCompatActivity {
     public class Mouse extends Character {
         public Mouse() {
             this.setHP(10, 15);
-            this.DmgMin1 = 2;
-            this.DmgMin2 = 4;
-            this.DmgMin3 = 7;
-            this.DmgMin4 = 7;
-
-            this.DmgMax1 = 18;
-            this.DmgMax2 = 12;
-            this.DmgMax3 = 14;
-            this.DmgMax4 = 15;
+            this.setDmgMin(2, 4, 7, 7);
+            this.setDmgMax(18, 12, 14, 15);
 
             this.AtkTxt1 = "The mouse finds things in the pantry to throw at you. It's really annoying, but it won't stop you.";
             this.AtkTxt2 = "The mouse discovered a bunch of toothpicks. He is looking around.";
@@ -301,15 +296,8 @@ public class Battle extends AppCompatActivity {
     public class Mice extends Character {
         public Mice() {
             this.setHP(30, 60);
-            this.DmgMin1 = 4;
-            this.DmgMin2 = 8;
-            this.DmgMin3 = 14;
-            this.DmgMin4 = 14;
-
-            this.DmgMax1 = 36;
-            this.DmgMax2 = 24;
-            this.DmgMax3 = 28;
-            this.DmgMax4 = 30;
+            this.setDmgMin(4, 8, 10, 12);
+            this.setDmgMax(36, 24, 28, 30);
 
             this.AtkTxt1 = "The mice all gang up on you, you feel your skin crawling.";
             this.AtkTxt2 = "The mice all decide to claw at your eyes, it hurts to some degree.";
@@ -325,15 +313,8 @@ public class Battle extends AppCompatActivity {
     public class Killer extends Character {
         public Killer() {
             this.setHP(80, 100);
-            this.DmgMin1 = 12;
-            this.DmgMin2 = 14;
-            this.DmgMin3 = 7;
-            this.DmgMin4 = 6;
-
-            this.DmgMax1 = 40;
-            this.DmgMax2 = 50;
-            this.DmgMax3 = 40;
-            this.DmgMax4 = 70;
+            this.setDmgMin(12, 14, 7, 6);
+            this.setDmgMax(40, 50, 40, 70);
 
             this.AtkTxt1 = "The killer plunges their knife into your soul. You feel a part of it leaving you.";
             this.AtkTxt2 = "You feel a drain, your movement feels more sluggish, you could fall asleep here and now.";
