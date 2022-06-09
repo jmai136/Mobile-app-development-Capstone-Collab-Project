@@ -16,30 +16,37 @@ public class Credits extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String[] creators = {"Game Programmers:", "Jude Mai", "Sharri Brascher","Music By:", "Ethan Hermann", "Art By:", "Aaron McGuire", "Restart"};
+        // https://www.youtube.com/watch?v=aUFdgLSEl0g
+        // test variables
+        String[] creators = {"Game Programmers:", "Jude Mai", "Sharri Brascher","Music By: Ethan Hermann", "Art By: Aaron McGuire", "Restart"};
+
+        // setListAdapter to intake stuff
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, creators));
     }
+
+    private void goToUri(Uri uri) {
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
     protected void onListItemClick (ListView l, View v, int position, long id) {
+        Uri[] uri = {Uri.parse("https://github.com/maict24"), Uri.parse("https://github.com/Shar3019"), Uri.parse("https://www.youtube.com/c/BootsBeats"), Uri.parse("https://marketplace.roll20.net/browse/publisher/1943/willow")};
+
         switch (position) {
             case 0:
                 break;
             case 1:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/maict24")));
+                goToUri(uri[0]);
                 break;
             case 2:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Shar3019")));
+                goToUri(uri[1]);
                 break;
             case 3:
+                goToUri(uri[2]);
                 break;
             case 4:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/c/BootsBeats")));
+                goToUri(uri[3]);
                 break;
             case 5:
-                break;
-            case 6:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://marketplace.roll20.net/browse/publisher/1943/willow")));
-                break;
-            case 7:
                 startActivity(new Intent (Credits.this, Splash.class));
                 break;
         }
