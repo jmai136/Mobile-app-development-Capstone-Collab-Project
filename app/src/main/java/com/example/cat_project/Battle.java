@@ -24,7 +24,6 @@ import java.util.Random;
 public class Battle extends AppCompatActivity {
     private MediaPlayer mpMusic;
 
-    // gotta fix the enumeraton
     private enum Phases {
         PHASE_ONE,
         PHASE_TWO,
