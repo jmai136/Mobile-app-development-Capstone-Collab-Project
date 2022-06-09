@@ -36,6 +36,7 @@ public class Battle extends AppCompatActivity {
             }
         };
 
+        // https://stackoverflow.com/questions/17664445/is-there-an-increment-operator-for-java-enum#:~:text=You%20can't%20%22increment%22,ordinal()%20%2B%201%5D%3B
         public Phases next() {
             return values()[ordinal() + 1];
         }
@@ -227,6 +228,14 @@ public class Battle extends AppCompatActivity {
         protected boolean getIsDead() { return (HP <= 0);}
 
         protected void clearImage() { enemy.setImageResource(0);}
+
+        // utility method: http://www.java2s.com/example/java-utility-method/integer-clamp/clamp-final-int-min-final-int-x-final-int-max-41c25.html
+        private static int clamp(final int min, final int x, final int max) {
+            if (max < min) {
+                throw new IllegalArgumentException("Max is less than min");
+            }
+            return Math.max(min, Math.min(max, x));
+        }
     }
 
     // inner classes
