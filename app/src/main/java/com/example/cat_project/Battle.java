@@ -24,14 +24,6 @@ import java.util.Random;
 public class Battle extends AppCompatActivity {
     private MediaPlayer mpMusic;
 
-    /*ImageView body = (ImageView) findViewById(R.id.body);
-
-    final ImageView
-            rat1 = (ImageView) findViewById(R.id.rat1),
-            rat2 = (ImageView) findViewById(R.id.rat2),
-            ratAlone = (ImageView) findViewById(R.id.ratAlone),
-            killer = (ImageView) findViewById(R.id.killer);*/
-
     // gotta fix the enumeraton
     private enum Phases {
         PHASE_ONE,
@@ -60,17 +52,11 @@ public class Battle extends AppCompatActivity {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
         ImageView body = (ImageView) findViewById(R.id.body);
-        // body.setVisibility(View.VISIBLE);
 
        new Handler(getMainLooper()).postDelayed(() -> {
                 Snackbar s = Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
                         .setAction("Battle", view -> {
-                                /*body.setVisibility(View.INVISIBLE);
-                                ratAlone.setVisibility(View.VISIBLE);
-                                rat1.setVisibility(View.VISIBLE);
-                                rat2.setVisibility(View.VISIBLE);*/
-
                                 body.setVisibility(View.GONE);
 
                                 mpMusic = new MediaPlayer();
@@ -103,6 +89,7 @@ public class Battle extends AppCompatActivity {
                 battle(10000, new Killer());
                 break;
             default:
+                mpMusic.stop();
                 Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
                 break;
         }
