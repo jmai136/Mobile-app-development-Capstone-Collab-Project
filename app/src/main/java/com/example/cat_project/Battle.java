@@ -242,7 +242,7 @@ public class Battle extends AppCompatActivity {
     }
 
     // inner classes
-    public class Cat extends Character {
+    public static class Cat extends Character {
         public Cat() {
             this.HP = rng.nextInt(((500- 300)  + 1) + 300);
             this.DmgMin1 = 9;
