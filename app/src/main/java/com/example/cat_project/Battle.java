@@ -60,7 +60,7 @@ public class Battle extends AppCompatActivity {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
 
        new Handler(getMainLooper()).postDelayed(() -> {
-                Snackbar
+                Snackbar s = Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
                         .setAction("Battle", view -> {
                                 /*body.setVisibility(View.INVISIBLE);
@@ -76,7 +76,12 @@ public class Battle extends AppCompatActivity {
                                 phases = Phases.PHASE_ONE;
                                 setPhases();
                             }
-                        ).show();
+                        );
+
+           TextView snackTextView = (TextView) s .getView().findViewById(com.google.android.material.R.id.snackbar_text);
+           snackTextView.setMaxLines(99);
+           s.show();
+
        }, 2000);
     }
 
@@ -236,7 +241,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public class Cat extends Character {
         public Cat() {
-            this.HP = rng.nextInt(((100 - 20)  + 1) + 20);
+            this.HP = rng.nextInt(((500- 300)  + 1) + 300);
             this.DmgMin1 = 9;
             this.DmgMin2 = 8;
             this.DmgMin3 = 9;
