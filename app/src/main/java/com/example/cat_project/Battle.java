@@ -250,7 +250,7 @@ public class Battle extends AppCompatActivity {
             return new Pair<>(finDmg, finalAtkTxt);
         }
 
-        protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) { return HP -= Dmg.first;}
+        protected int setApplyDmg(@NonNull Pair<Integer, String> Dmg) { return HP = clamp(0, HP -= Dmg.first, MaxHP);}
 
         protected boolean getIsDead() { return (HP <= 0);}
 
@@ -262,9 +262,9 @@ public class Battle extends AppCompatActivity {
 
         // utility method: http://www.java2s.com/example/java-utility-method/integer-clamp/clamp-final-int-min-final-int-x-final-int-max-41c25.html
         private static int clamp(final int min, final int x, final int max) {
-            if (max < min) {
+            if (max < min)
                 throw new IllegalArgumentException("Max is less than min");
-            }
+
             return Math.max(min, Math.min(max, x));
         }
     }
