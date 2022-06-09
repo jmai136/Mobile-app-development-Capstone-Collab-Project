@@ -51,6 +51,7 @@ public class Battle extends AppCompatActivity {
 
     final private Cat cat = new Cat();
     private Phases phases;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +104,13 @@ public class Battle extends AppCompatActivity {
         RelativeLayout relativeLayout = findViewById(R.id.RelativeLayout);
         TextView txtTimer = findViewById(R.id.txtTimer);
         Button btnLockIn = findViewById(R.id.btnLockIn);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
 
         new CountDownTimer(countdownTimerDuration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                radioGroup.setVisibility(View.VISIBLE);
+
                 txtTimer.setText(String.format(Locale.getDefault(), "%02d", (int) millisUntilFinished / 1000 % 60));
 
                 btnLockIn.setVisibility(View.VISIBLE);
@@ -120,6 +124,8 @@ public class Battle extends AppCompatActivity {
 
                 cat.setApplyDmg(Subclass.getBattleOptionResults(getChoice()));
                 Subclass.setApplyDmg(cat.getBattleOptionResults(getRadioID()));
+
+                radioGroup.setVisibility(View.GONE);
 
                 Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP - You: " + cat.HP + " Enemy: " + Subclass.HP,  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
                     {
@@ -143,7 +149,6 @@ public class Battle extends AppCompatActivity {
     // grab the radio id the player clicked on
     private int getRadioID() {
         int choice = 4;
-
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         switch(radioGroup.getCheckedRadioButtonId()) {
             case R.id.one:
@@ -176,6 +181,8 @@ public class Battle extends AppCompatActivity {
                 DmgMax1, DmgMax2, DmgMax3, DmgMax4;
         protected String AtkTxt1, AtkTxt2, AtkTxt3, AtkTxt4, Missed;
         protected Pair<Integer, String> DmgAndTxtValues;
+
+        protected ImageView enemy;
 
         protected Pair<Integer, String> getBattleOptionResults(int choice) {
             return DmgAndTxtValues = setBattleOption(choice);
@@ -268,6 +275,9 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt3 = "The mouse calls to all his mouse friends. They gang up on you. Mice everywhere!!";
             this.AtkTxt4 = "They have you surrounded. Toothpicks everywhere. Is this how it ends?";
             this.Missed = "The mice missed.";
+
+            this.enemy = findViewById(R.id.ratAlone);
+            enemy.setVisibility(View.VISIBLE);
         }
     }
 
@@ -289,6 +299,9 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt3 = "The mice are merciless, deciding to kick you swiftly while surrounding.";
             this.AtkTxt4 = "They truly are a pair, backing you into a corner.";
             this.Missed = "The mice missed.";
+
+            this.enemy = findViewById(R.id.rat1);
+            enemy.setVisibility(View.VISIBLE);
         }
     }
 
@@ -310,6 +323,9 @@ public class Battle extends AppCompatActivity {
             this.AtkTxt3 = "The killer slashes, and you can imagine what your owner must have felt.";
             this.AtkTxt4 = "The killer strikes from above, and unfortunately you can't hide your terror.";
             this.Missed = "The killer missed.";
+
+            this.enemy = findViewById(R.id.killer);
+            enemy.setVisibility(View.VISIBLE);
         }
     }
 }
