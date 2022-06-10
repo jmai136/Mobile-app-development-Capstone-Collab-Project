@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.start();
 
         //mute button
+        Button btnMute = (Button) findViewById(R.id.btnMute);
         btnMute.setOnClickListener(v -> {
             mpMusic.stop();
         });

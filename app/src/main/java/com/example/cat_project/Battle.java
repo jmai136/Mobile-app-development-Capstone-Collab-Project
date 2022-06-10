@@ -54,6 +54,7 @@ public class Battle extends AppCompatActivity {
         ImageView body = (ImageView) findViewById(R.id.body);
 
         //mute button
+        Button btnMute = (Button) findViewById(R.id.btnMute);
         btnMute.setOnClickListener(v -> {
             mpMusic.stop();
         });
