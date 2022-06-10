@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().post(() -> {
                 kitchen1.setVisibility(View.VISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
-            };
+            });
 
         //show second text message on delay; hide first message
         new Handler(getMainLooper()).postDelayed(() -> {
