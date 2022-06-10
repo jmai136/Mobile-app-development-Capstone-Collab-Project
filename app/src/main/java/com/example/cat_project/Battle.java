@@ -53,12 +53,6 @@ public class Battle extends AppCompatActivity {
 
         ImageView body = (ImageView) findViewById(R.id.body);
 
-        //mute button
-        Button btnMute = (Button) findViewById(R.id.btnMute);
-        btnMute.setOnClickListener(v -> {
-            mpMusic.stop();
-        });
-
        new Handler(getMainLooper()).postDelayed(() -> {
                 Snackbar s = Snackbar
                         .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
