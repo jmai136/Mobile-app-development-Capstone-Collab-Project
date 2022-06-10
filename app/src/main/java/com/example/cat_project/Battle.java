@@ -53,10 +53,10 @@ public class Battle extends AppCompatActivity {
 
         ImageView body = (ImageView) findViewById(R.id.body);
 
-       new Handler(getMainLooper()).postDelayed(() -> {
-                Snackbar s = Snackbar
-                        .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Battle", view -> {
+        new Handler(getMainLooper()).postDelayed(() -> {
+            Snackbar s = Snackbar
+                    .make(relativeLayout, "What?? Your owner has been murdered!! A scruffy looking mouse heads towards you. Is this the fiend who killed your owner?",Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Battle", view -> {
                                 body.setVisibility(View.GONE);
 
                                 mpMusic = new MediaPlayer();
@@ -67,15 +67,14 @@ public class Battle extends AppCompatActivity {
                                 phases = Phases.PHASE_ONE;
                                 setPhases();
                             }
-                        );
+                    );
 
-           TextView snackTextView = (TextView) s .getView().findViewById(com.google.android.material.R.id.snackbar_text);
-           snackTextView.setMaxLines(99);
-           s.show();
+            TextView snackTextView = (TextView) s .getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            snackTextView.setMaxLines(99);
+            s.show();
 
-       }, 2000);
+        }, 2000);
     }
-
     private void setPhases()
     {
         switch (phases) {
@@ -90,7 +89,7 @@ public class Battle extends AppCompatActivity {
                 break;
             default:
                 mpMusic.stop();
-                Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
+                Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, EndingOne.class))).show();
                 break;
         }
     }
@@ -125,8 +124,10 @@ public class Battle extends AppCompatActivity {
 
                 Snackbar attacks = Snackbar.make(relativeLayout, "Cat damages at: " + cat.getDamageVal() + ", " + cat.getDamageText() + "\n\nEnemy damages at: " + Subclass.getDamageVal() + " , " + Subclass.getDamageText() + "\n\nHP -" + cat.getName() + ": " + cat.getHP() + " " + Subclass.getName() + ": " + Subclass.getHP(),  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> {
                     {
-                        if (cat.getIsDead())
-                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v ->startActivity(new Intent(Battle.this, BadEnding.class))).show();
+                        if (cat.getIsDead()) {
+                            mpMusic.stop();
+                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v -> startActivity(new Intent(Battle.this, EndingTwo.class))).show();
+                        }
                         else if (Subclass.getIsDead()) {
                             Subclass.clearImage();
 
