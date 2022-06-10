@@ -89,7 +89,7 @@ public class Battle extends AppCompatActivity {
                 break;
             default:
                 mpMusic.stop();
-                Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, EndingOne.class))).show();
+                Snackbar.make(findViewById(R.id.RelativeLayout), "You won, and although you will never be free from your scars, you can always start on a new beginning.", Snackbar.LENGTH_INDEFINITE).setAction("Roam free as a stray.", view -> startActivity(new Intent(Battle.this, GoodEnding.class))).show();
                 break;
         }
     }
@@ -126,7 +126,7 @@ public class Battle extends AppCompatActivity {
                     {
                         if (cat.getIsDead()) {
                             mpMusic.stop();
-                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v -> startActivity(new Intent(Battle.this, EndingTwo.class))).show();
+                            Snackbar.make(relativeLayout, "Ultimately, you failed, you couldn't avenge your owner, you couldn't do anything.", Snackbar.LENGTH_INDEFINITE).setAction("Be locked inside the pound forever", v -> startActivity(new Intent(Battle.this, BadEnding.class))).show();
                         }
                         else if (Subclass.getIsDead()) {
                             Subclass.clearImage();
@@ -272,7 +272,7 @@ public class Battle extends AppCompatActivity {
     // inner classes
     public static class Cat extends Character {
         public Cat() {
-            this.setHP(300, 500);
+            this.setHP(200, 300);
             this.setDmgMin(9, 8, 9, 2);
             this.setDmgMax(15, 10, 12, 20);
             this.setAtkTxt(
