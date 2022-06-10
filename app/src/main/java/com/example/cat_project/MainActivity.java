@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.setLooping(true);
         mpMusic.start();
 
-        //mute button
-        Button btnMute = (Button) findViewById(R.id.btnMute);
-        btnMute.setOnClickListener(v -> {
-            mpMusic.stop();
-        });
-
         final TextView
                 kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
                 kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
@@ -68,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> btnLivingRoom.setVisibility(View.VISIBLE));
 
             TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
+            snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
             snackTextView.setMaxLines(99);
 
             pantry.show();
