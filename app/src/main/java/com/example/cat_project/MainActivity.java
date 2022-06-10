@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         mpMusic.setLooping(true);
         mpMusic.start();
 
+        //mute button
+        btnMute.setOnClickListener(v -> {
+            mpMusic.stop();
+        });
+
         final TextView
                 kitchen1 = (TextView) findViewById(R.id.txtKitchen1),
                 kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
