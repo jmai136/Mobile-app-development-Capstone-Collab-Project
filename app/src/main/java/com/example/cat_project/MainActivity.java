@@ -39,13 +39,10 @@ public class MainActivity extends AppCompatActivity {
                 kitchen2 = (TextView) findViewById(R.id.txtKitchen2);
 
         //show first text message; hide second message
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().post(() -> {
                 kitchen1.setVisibility(View.VISIBLE);
                 kitchen2.setVisibility(View.INVISIBLE);
-            }
-        });
+            };
 
         //show second text message on delay; hide first message
         new Handler(getMainLooper()).postDelayed(() -> {
