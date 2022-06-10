@@ -15,4 +15,18 @@
     <string name="atk4">Hiss 2 - 20 DMG</string>
     <string name="gEnding">You have escaped and are free to start a new life. You cannot stop thinking about the nightmarish ordeal behind you, but at least you survived! You sniff the fresh air and wonder what adventures await you...</string>
     <string name="bEnding">Not only were you humiliated by a bunch of mice, but the shadowy figure that killed your owner has defeated you as well. What will become of you now?</string>
+    <string-array name="roles">
+        <item><string name="game_programmer_role">Game Programmers:</string></item>
+        <item><string name="musician_role">Music by:</string></item>
+        <item><string name="artist_role">Art by:</string></item>
+        <item><string name="restart">Restart</string></item>
+    </string-array>
+    <string-array name="creators">
+        <item>
+            <string name="first_programmer"><a href="https://github.com/maict24">Jude Mai</a></string>
+            <string name="sec_programmer"><a href="https://github.com/Shar3019">Sharri Brascher</a></string>
+        </item>
+        <item><string name="musician"><a href="https://www.youtube.com/c/BootsBeats">Ethan Hermann</a></string></item>
+        <item><string name="artist"><a href="https://marketplace.roll20.net/browse/publisher/1943/willow">Aaron McGuire</a></string></item>
+    </string-array>
 </resources>
