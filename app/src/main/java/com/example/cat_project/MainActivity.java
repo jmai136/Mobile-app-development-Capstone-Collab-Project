@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
             Snackbar pantry = Snackbar.make(relativeLayout, "You open the pantry to find your food. Oh, no! The bag of cat food is completely empty. Better search for your owner...",  Snackbar.LENGTH_INDEFINITE).setAction("Close", view -> btnLivingRoom.setVisibility(View.VISIBLE));
 
             TextView snackTextView = (TextView) pantry.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-            snackTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.pantrydoorpixel, 0);
-            snackTextView.setGravity(Gravity.CENTER_HORIZONTAL);
             snackTextView.setMaxLines(99);
 
             pantry.show();
